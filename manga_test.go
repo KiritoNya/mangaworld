@@ -254,3 +254,23 @@ func TestManga_GetFansub(t *testing.T) {
 		t.Log("Fansub url [OK]")
 	}
 }
+
+func TestManga_GetAnimeworldUrl(t *testing.T) {
+	var url = "https://www.animeworld.tv/play/citrus.vci_L/"
+
+	m, err := NewManga(link)
+	if err != nil {
+		t.Error("Error to create object")
+	}
+
+	err = m.GetAnimeworldUrl()
+	if err != nil {
+		t.Error("Error to get animeworld url")
+	}
+
+	if m.AnimeworldUrl != url {
+		t.Error("Error not obtain", url, "but obtain", m.AnimeworldUrl)
+	} else {
+		t.Log("Animeworld url [OK]")
+	}
+}

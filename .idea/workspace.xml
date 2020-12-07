@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0046473b-4b38-4655-af3c-b05764729190" name="Default Changelist" comment="Add method Manga &quot;GetYearsStart&quot;">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="0046473b-4b38-4655-af3c-b05764729190" name="Default Changelist" comment="Correct">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/manga.go" beforeDir="false" afterPath="$PROJECT_DIR$/manga.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/manga_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/manga_test.go" afterDir="false" />
@@ -49,7 +48,18 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
-  <component name="RunManager" selected="Go Test.TestManga_GetFansub in github.com/KiritoNya/mangaworld">
+  <component name="RunManager" selected="Go Test.TestManga_GetAnimeworldUrl in github.com/KiritoNya/mangaworld">
+    <configuration name="TestManga_GetAnimeworldUrl in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="mangaworld" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/KiritoNya/mangaworld" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestManga_GetAnimeworldUrl\E$" />
+      <method v="2" />
+    </configuration>
     <configuration name="TestManga_GetFansub in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="mangaworld" />
       <working_directory value="$PROJECT_DIR$" />
@@ -70,17 +80,6 @@
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <pattern value="^\QTestManga_GetState\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestManga_GetType in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="mangaworld" />
-      <working_directory value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/KiritoNya/mangaworld" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestManga_GetType\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestManga_GetVisual in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -107,11 +106,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestManga_GetAnimeworldUrl in github.com/KiritoNya/mangaworld" />
         <item itemvalue="Go Test.TestManga_GetFansub in github.com/KiritoNya/mangaworld" />
         <item itemvalue="Go Test.TestManga_GetYearsStart in github.com/KiritoNya/mangaworld" />
         <item itemvalue="Go Test.TestManga_GetVisual in github.com/KiritoNya/mangaworld" />
         <item itemvalue="Go Test.TestManga_GetState in github.com/KiritoNya/mangaworld" />
-        <item itemvalue="Go Test.TestManga_GetType in github.com/KiritoNya/mangaworld" />
       </list>
     </recent_temporary>
   </component>
@@ -133,6 +132,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add method Manga &quot;GetYearsStart&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add method Manga &quot;GetYearsStart&quot;" />
+    <MESSAGE value="Add method Manga &quot;GetFansub&quot; and function test method" />
+    <MESSAGE value="Correct" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correct" />
   </component>
 </project>

@@ -245,3 +245,25 @@ func (m *Manga) GetFansub() error {
 
 	return nil
 }
+
+func (m *Manga) GetAnimeworldUrl() error {
+	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6 p-0 mt-1")
+	if err != nil {
+		return err
+	}
+
+	tagA, err := htmlutils.GetGeneralTags(divs[0], "a")
+	if err != nil {
+		return err
+	}
+
+	url, err := htmlutils.GetValueAttr(tagA[0], "a", "href")
+	if err != nil {
+		return err
+	}
+
+	m.AnimeworldUrl = string(url[0])
+
+	return nil
+
+}
