@@ -198,3 +198,20 @@ func (m *Manga) GetVisual() error {
 
 	return nil
 }
+
+func (m *Manga) GetYearsStart() error {
+	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6")
+	if err != nil {
+		return err
+	}
+
+	tagA, err := htmlutils.GetGeneralTags(divs[5], "a")
+	if err != nil {
+		return err
+	}
+
+	years := htmlutils.GetNodeText(tagA[0], "a")
+	m.Years_start = string(years)
+
+	return nil
+}
