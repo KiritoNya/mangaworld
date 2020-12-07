@@ -1,7 +1,8 @@
 package mangaworld
 
 import (
-
+	"errors"
+	"fmt"
 	//"fmt"
 	"github.com/KiritoNya/htmlutils"
 	"github.com/grokify/html-strip-tags-go"
@@ -266,4 +267,181 @@ func (m *Manga) GetAnimeworldUrl() error {
 
 	return nil
 
+}
+
+func (m *Manga) GetMalUrl() error {
+	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6 p-0 mt-1")
+	if err != nil {
+		return err
+	}
+
+	tagA, err := htmlutils.GetGeneralTags(divs[1], "a")
+	if err != nil {
+		return err
+	}
+
+	url, err := htmlutils.GetValueAttr(tagA[0], "a", "href")
+	if err != nil {
+		return err
+	}
+
+	m.MALUrl = string(url[0])
+
+	return nil
+
+}
+
+func (m *Manga) GetAnilistUrl() error {
+	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6 p-0 mt-1")
+	if err != nil {
+		return err
+	}
+
+	tagA, err := htmlutils.GetGeneralTags(divs[2], "a")
+	if err != nil {
+		return err
+	}
+
+	url, err := htmlutils.GetValueAttr(tagA[0], "a", "href")
+	if err != nil {
+		return err
+	}
+
+	m.AnilistUrl = string(url[0])
+
+	return nil
+
+}
+
+func (m *Manga) GetMangaUpdatesUrl() error {
+	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6 p-0 mt-1")
+	if err != nil {
+		return err
+	}
+
+	tagA, err := htmlutils.GetGeneralTags(divs[3], "a")
+	if err != nil {
+		return err
+	}
+
+	url, err := htmlutils.GetValueAttr(tagA[0], "a", "href")
+	if err != nil {
+		return err
+	}
+
+	m.MangaUpdatesUrl = string(url[0])
+
+	return nil
+
+}
+
+func (m *Manga) GetPlot() error {
+	divs, err := htmlutils.QuerySelector(m.resp, "div", "id", "noidungm")
+	if err != nil {
+		return err
+	}
+
+	m.Plot = string(htmlutils.GetNodeText(divs[0], "div"))
+
+	return nil
+}
+
+func (m *Manga) GetVolumsNum() error {
+	tagsP, err := htmlutils.QuerySelector(m.resp, "p", "class", "volume-name d-inline")
+	if err != nil {
+		return err
+	}
+
+	volumString := string(htmlutils.GetNodeText(tagsP[0], "p"))
+	volumString = strings.Replace(volumString, "Volume ", "", -1)
+	m.VolumsNum, err = strconv.Atoi(volumString)
+
+	return nil
+}
+
+func (m *Manga) GetChaptersNum() error {
+	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "chap")
+	if err != nil {
+		return err
+	}
+
+	spans, err := htmlutils.GetGeneralTags(divs[0], "span")
+	if err != nil {
+		return err
+	}
+
+	numChapString := string(htmlutils.GetNodeText(spans[0], "span"))
+	numChapString = strings.Replace(numChapString, "Capitolo ", "", -1)
+	m.ChaptersNum, err = strconv.Atoi(numChapString)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Manga) GetRelations() error {
+	var mangas []Manga
+
+	//Extract manga relation list
+	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "entry vertical")
+	if err != nil {
+		return errors.New(htmlutils.RenderNode(m.resp))
+	}
+
+	for _, div := range divs {
+
+		//Get url of manga relation
+		tagA, err := htmlutils.GetGeneralTags(div, "a")
+		if err != nil {
+			return err
+		}
+
+		fmt.Println(htmlutils.RenderNode(tagA[0]))
+
+		url, err := htmlutils.GetValueAttr(tagA[0], "a", "href")
+		if err != nil {
+			return err
+		}
+
+		//Get title of manga relation
+		title, err := htmlutils.GetValueAttr(tagA[0], "a", "title")
+		if err != nil {
+			return err
+		}
+
+		//Get image of manga relation
+		img, err := htmlutils.GetGeneralTags(div, "img")
+		if err != nil {
+			return err
+		}
+
+		imgUrl, err := htmlutils.GetValueAttr(img[0], "img", "src")
+		if err != nil {
+			return err
+		}
+
+		//Get Section with year+type
+		divs2, err := htmlutils.GetGeneralTags(div, "div")
+		if err != nil {
+			return err
+		}
+
+		year := string(htmlutils.GetNodeText(divs2[0], "div"))
+		typeMedia := string(htmlutils.GetNodeText(divs2[1], "div"))
+
+		//Create manga object
+		manga, err := NewManga(string(url[0]))
+		if err != nil {
+			return err
+		}
+
+		manga.Title = string(title[0])
+		manga.CoverUrl = string(imgUrl[0])
+		manga.YearsStart = year
+		manga.Type = Type(typeMedia)
+
+		mangas = append(mangas, *manga)
+	}
+	return nil
 }
