@@ -29,7 +29,7 @@ func TestManga_GetTitle(t *testing.T) {
 
 func TestManga_GetAlternativeTitle(t *testing.T) {
 
-	var alternativeName = []string {
+	var alternativeName = []string{
 		"Citrus Plus",
 		"シトラスプラス",
 	}
@@ -44,12 +44,12 @@ func TestManga_GetAlternativeTitle(t *testing.T) {
 		t.Error("Error to get alternative title")
 	}
 
-	for i, title := range m.Title_alternative {
-			if title != alternativeName[i] {
-				t.Error("Error not obtain", title, "but obtain", alternativeName[i])
-			} else {
-				t.Log("Alternative title", i, "[OK]")
-			}
+	for i, title := range m.TitleAlternative {
+		if title != alternativeName[i] {
+			t.Error("Error not obtain", title, "but obtain", alternativeName[i])
+		} else {
+			t.Log("Alternative title", i, "[OK]")
+		}
 	}
 }
 
@@ -66,15 +66,15 @@ func TestManga_CoverUrl(t *testing.T) {
 		t.Error("Error to get cover")
 	}
 
-	if m.Cover_url != imageUrl {
-		t.Error("Error not obtain", imageUrl, "but obtain", m.Cover_url)
+	if m.CoverUrl != imageUrl {
+		t.Error("Error not obtain", imageUrl, "but obtain", m.CoverUrl)
 	} else {
 		t.Log("Title [OK]")
 	}
 }
 
 func TestManga_GetGenre(t *testing.T) {
-	var genresCheck = []Genre {
+	var genresCheck = []Genre{
 		"Drammatico",
 		"Romantico",
 		"Scolastico",
@@ -102,7 +102,7 @@ func TestManga_GetGenre(t *testing.T) {
 }
 
 func TestManga_GetAuthor(t *testing.T) {
-	var authorsCheck = []string {
+	var authorsCheck = []string{
 		"Saburouta",
 	}
 
@@ -126,7 +126,7 @@ func TestManga_GetAuthor(t *testing.T) {
 }
 
 func TestManga_GetArtists(t *testing.T) {
-	var artistCheck = []string {
+	var artistCheck = []string{
 		"Saburouta",
 	}
 
@@ -203,5 +203,54 @@ func TestManga_GetVisual(t *testing.T) {
 		t.Error("Error not obtain", visual+1, "but obtain", m.Visual)
 	} else {
 		t.Log("Visual [OK]")
+	}
+}
+
+func TestManga_GetYearsStart(t *testing.T) {
+	const year = "2018"
+
+	m, err := NewManga(link)
+	if err != nil {
+		t.Error("Error to create object")
+	}
+
+	err = m.GetYearsStart()
+	if err != nil {
+		t.Error("Error to get year start")
+	}
+
+	if m.YearsStart != year {
+		t.Error("Error not obtain", year, "but obtain", m.YearsStart)
+	} else {
+		t.Log("Year start [OK]")
+	}
+}
+
+func TestManga_GetFansub(t *testing.T) {
+	var fansub = Fansub{
+		Name: "Phoenix Scans",
+		Url:  "https://www.phantomreader.com/",
+	}
+
+	m, err := NewManga(link)
+	if err != nil {
+		t.Error("Error to create object")
+	}
+
+	err = m.GetFansub()
+	if err != nil {
+		t.Error("Error to get fansub")
+	}
+
+	if m.Fansub.Name != fansub.Name {
+		t.Error("Error not obtain", fansub.Name, "but obtain", m.Fansub.Name)
+	} else {
+		t.Log("Fansub name [OK]")
+	}
+
+	if m.Fansub.Url != fansub.Url {
+		t.Error("Error not obtain", fansub.Url, "but obtain", m.Fansub.Url)
+	} else {
+		t.Log("Fansub url [OK]")
 	}
 }

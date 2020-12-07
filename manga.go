@@ -11,29 +11,34 @@ import (
 	"strings"
 )
 
+type Fansub struct {
+	Name string
+	Url  string
+}
+
 type Manga struct {
-	Title             string
-	Title_alternative []string
-	Cover_url         string
-	Genres            []Genre
-	Authors           []string
-	Artists           []string
-	Type              Type
-	State             State
-	Plot              string
-	Years_start       string
-	Volums_num        int
-	Chapters_num      int
-	Chapters          []Chapter
-	Relations         []Manga
-	Visual            int
-	Fansub_url        string
-	Animeworld_url    string
-	Anilist_url       string
-	MAL_url           string
-	MangaUpdates_url  string
-	Keywords          []string
-	resp              *html.Node
+	Title            string
+	TitleAlternative []string
+	CoverUrl         string
+	Genres           []Genre
+	Authors          []string
+	Artists          []string
+	Type             Type
+	State            State
+	Plot             string
+	YearsStart       string
+	VolumsNum        int
+	ChaptersNum      int
+	Chapters         []Chapter
+	Relations        []Manga
+	Visual           int
+	Fansub           Fansub
+	AnimeworldUrl    string
+	AnilistUrl       string
+	MALUrl           string
+	MangaUpdatesUrl  string
+	Keywords         []string
+	resp             *html.Node
 }
 
 func NewManga(urlManga string) (*Manga, error) {
@@ -73,7 +78,7 @@ func (m *Manga) GetAlternativeTitle() error {
 	stripped := strip.StripTags(htmlutils.RenderNode(divs[0]))
 
 	stripped = strings.Replace(stripped, "Titoli alternativi:  ", "", -1)
-	m.Title_alternative = strings.Split(stripped, ", ")
+	m.TitleAlternative = strings.Split(stripped, ", ")
 	return nil
 }
 
@@ -84,7 +89,7 @@ func (m *Manga) GetCoverUrl() error {
 	}
 
 	link, err := htmlutils.GetValueAttr(images[0], "img", "src")
-	m.Cover_url = strings.Split(string(link[0]), "?")[0]
+	m.CoverUrl = strings.Split(string(link[0]), "?")[0]
 	return nil
 }
 
@@ -211,7 +216,32 @@ func (m *Manga) GetYearsStart() error {
 	}
 
 	years := htmlutils.GetNodeText(tagA[0], "a")
-	m.Years_start = string(years)
+	m.YearsStart = string(years)
+
+	return nil
+}
+
+func (m *Manga) GetFansub() error {
+	var f Fansub
+
+	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6")
+	if err != nil {
+		return err
+	}
+
+	tagA, err := htmlutils.GetGeneralTags(divs[6], "a")
+	if err != nil {
+		return err
+	}
+
+	f.Name = string(htmlutils.GetNodeText(tagA[0], "a"))
+	url, err := htmlutils.GetValueAttr(tagA[0], "a", "href")
+	if err != nil {
+		return err
+	}
+	f.Url = string(url[0])
+
+	m.Fansub = f
 
 	return nil
 }
