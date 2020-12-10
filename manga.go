@@ -445,3 +445,22 @@ func (m *Manga) GetRelations() error {
 	}
 	return nil
 }
+
+func (m *Manga) GetKeywords() error {
+	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "has-shadow top-wrapper p-3 mt-4 mb-3")
+	if err != nil {
+		return err
+	}
+
+	stripped := strip.StripTags(htmlutils.RenderNode(divs[0]))
+	stripped = strings.Replace(stripped, "Keywords:", "", -1)
+	stripped = strings.Replace(stripped, "  ", "", -1)
+	//If there is a initial space
+	if stripped[0] == ' ' {
+		stripped = stripped[1:]
+	}
+	m.Keywords = strings.Split(stripped, " - ")
+
+	return nil
+
+}

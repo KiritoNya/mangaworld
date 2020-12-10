@@ -49,6 +49,26 @@ var testManga = Manga{
 			Type:       Manga_type,
 		},
 	},
+	Keywords: []string{
+		"Citrus+ Scan ITA",
+		"Citrus+ Scan ITALIANE",
+		"Citrus+ MangaWorld",
+		"Citrus+ MangaDex",
+		"Citrus+ MangaEden",
+		"Citrus+ SUB ITA",
+		"Citrus+ Leggi online",
+		"Citrus+ Reader ITA",
+		"Citrus+ Scan online",
+		"Citrus+ Read online",
+		"Citrus+ Online",
+		"Citrus+ Manga ITA",
+		"Citrus+ Manga Scan",
+		"Citrus+ Scan manga online",
+		"Citrus+ ITA Scan",
+		"MangaWorld Citrus+",
+		"Scan ITA Citrus+",
+		"Read online Citrus+",
+	},
 }
 
 func TestManga_GetTitle(t *testing.T) {
@@ -445,4 +465,25 @@ func TestManga_GetRelations(t *testing.T) {
 			t.Log("Relation ", i, "type [OK]")
 		}
 	}
+}
+
+func TestManga_GetKeyword(t *testing.T) {
+	m, err := NewManga(link)
+	if err != nil {
+		t.Error("Error to create object")
+	}
+
+	err = m.GetKeywords()
+	if err != nil {
+		t.Error("Error to get keywords")
+	}
+
+	for i, key := range m.Keywords {
+		if key != testManga.Keywords[i] {
+			t.Error("Error not obtain", testManga.Keywords[i], "but obtain", key)
+		} else {
+			t.Log("Key", i, "[OK]")
+		}
+	}
+
 }
