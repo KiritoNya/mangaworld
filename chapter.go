@@ -6,6 +6,7 @@ import (
 	strip "github.com/grokify/html-strip-tags-go"
 	"golang.org/x/net/html"
 	"net/http"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -50,6 +51,23 @@ func NewChapter(urlChapter string) (*Chapter, error) {
 	c.resp, err = html.Parse(resp.Body)
 	if err != nil {
 		return &Chapter{}, err
+	}
+
+	urlMatrix := strings.Split(urlChapter, "/")
+	//Check if the link contain the number of page
+	match, err := regexp.MatchString("[0-9]+", urlMatrix[len(urlMatrix)-1])
+	if err != nil {
+		return nil, err
+	}
+
+	if match == true {
+		urlMatrix = urlMatrix[:len(urlMatrix)-1]
+		urlChapter = strings.Join(urlMatrix, "/")
+	}
+
+	//Remove last / if exist
+	if urlChapter[len(urlChapter)-1] == '/' {
+		urlChapter = urlChapter[:len(urlChapter)-1]
 	}
 
 	c.Url = urlChapter
@@ -141,13 +159,8 @@ func (c *Chapter) GetPageUrl() error {
 		return errors.New("Error, page number of chapter not found, execute GetNumPage before this method")
 	}
 
-	urlMatrix := strings.Split(c.Url, "/")
-	urlMatrix = urlMatrix[:len(urlMatrix)-1]
-	url := strings.Join(urlMatrix, "/")
-	url = url + "/"
-
 	for i := 1; i <= c.PageNum; i++ {
-		resp, err := http.Get(url + strconv.Itoa(i))
+		resp, err := http.Get(c.Url + "/" + strconv.Itoa(i))
 		if err != nil {
 			return err
 		}
@@ -176,7 +189,6 @@ func (c *Chapter) GetPageUrl() error {
 		c.PageUrl = append(c.PageUrl, string(urlImg[0]))
 	}
 
-	c.PageUrl = append(c.PageUrl, url)
 	return nil
 }
 

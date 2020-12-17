@@ -150,6 +150,8 @@ func TestChapter_GetPageUrl(t *testing.T) {
 		t.Fatalf("Error to create object")
 	}
 
+	t.Log(c.Url)
+
 	err = c.GetPageNum()
 	if err != nil {
 		t.Error("Error to get chapter page number: ", err)
@@ -157,7 +159,7 @@ func TestChapter_GetPageUrl(t *testing.T) {
 
 	err = c.GetPageUrl()
 	if err != nil {
-		t.Errorf("Error to get chapter page url")
+		t.Error("Error to get chapter page url: ", err)
 	}
 
 	for i, page := range c.PageUrl {
