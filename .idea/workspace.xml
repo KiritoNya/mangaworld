@@ -60,18 +60,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
-  <component name="RunManager" selected="Go Test.TestChapter_GetPageUrl in github.com/KiritoNya/mangaworld">
-    <configuration name="TestChapter_GetKeywords in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="mangaworld" />
-      <working_directory value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/KiritoNya/mangaworld" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestChapter_GetKeywords\E$" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Go Test.TestVolum_GetChapters in github.com/KiritoNya/mangaworld">
     <configuration name="TestChapter_GetPageUrl in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="mangaworld" />
       <working_directory value="$PROJECT_DIR$" />
@@ -92,6 +81,17 @@
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <pattern value="^\QTestNewVolum\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestVolum_GetChapters in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="mangaworld" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/KiritoNya/mangaworld" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestVolum_GetChapters\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestVolum_GetName in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -118,11 +118,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestVolum_GetChapters in github.com/KiritoNya/mangaworld" />
         <item itemvalue="Go Test.TestChapter_GetPageUrl in github.com/KiritoNya/mangaworld" />
         <item itemvalue="Go Test.TestVolum_GetNumber in github.com/KiritoNya/mangaworld" />
         <item itemvalue="Go Test.TestVolum_GetName in github.com/KiritoNya/mangaworld" />
         <item itemvalue="Go Test.TestNewVolum in github.com/KiritoNya/mangaworld" />
-        <item itemvalue="Go Test.TestChapter_GetKeywords in github.com/KiritoNya/mangaworld" />
       </list>
     </recent_temporary>
   </component>
