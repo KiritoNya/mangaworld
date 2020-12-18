@@ -18,6 +18,7 @@ type Fansub struct {
 }
 
 type Manga struct {
+	Url              string
 	Title            string
 	TitleAlternative []string
 	CoverUrl         string
@@ -43,7 +44,6 @@ type Manga struct {
 }
 
 func NewManga(urlManga string) (*Manga, error) {
-	var m Manga
 
 	resp, err := http.Get(urlManga)
 	if err != nil {
@@ -51,12 +51,12 @@ func NewManga(urlManga string) (*Manga, error) {
 	}
 	defer resp.Body.Close()
 
-	m.resp, err = html.Parse(resp.Body)
+	node, err := html.Parse(resp.Body)
 	if err != nil {
 		return &Manga{}, err
 	}
 
-	return &m, nil
+	return &Manga{Url: urlManga, resp: node}, nil
 }
 
 func (m *Manga) GetTitle() error {

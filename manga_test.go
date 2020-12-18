@@ -71,6 +71,15 @@ var testManga = Manga{
 	},
 }
 
+func TestNewManga(t *testing.T) {
+	_, err := NewManga(link)
+	if err != nil {
+		t.Error("Error to create object")
+	}
+
+	t.Log("Object create [OK]")
+}
+
 func TestManga_GetTitle(t *testing.T) {
 
 	m, err := NewManga(link)
