@@ -2,23 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0046473b-4b38-4655-af3c-b05764729190" name="Default Changelist" comment="Add other methods and relative tests">
-      <change afterPath="$PROJECT_DIR$/../LearnGoProject/BasicEditing.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LearnGoProject/CodeCompletion.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LearnGoProject/Debugging.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LearnGoProject/IntentionActions.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LearnGoProject/Release.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LearnGoProject/main_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chapterNew.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chapterNew_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../eventiStorici/date.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../eventiStorici/eventi.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../eventiStorici/eventi_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../htmlutils" beforeDir="false" afterPath="$PROJECT_DIR$/../htmlutils" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trendingNow.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trenfingNow_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters_new.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manga.go" beforeDir="false" afterPath="$PROJECT_DIR$/manga.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manga_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/manga_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mangaworld.go" beforeDir="false" afterPath="$PROJECT_DIR$/mangaworld.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trending_now.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +25,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" url="file:///usr/local/go" />
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../../../../Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -53,7 +41,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../eventiStorici" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -62,7 +51,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
-  <component name="RunManager" selected="Go Test.TestChapterNew_GetChapter in github.com/KiritoNya/mangaworld">
+  <component name="RunManager" selected="Go Test.TestTrending_GetChapter in github.com/KiritoNya/mangaworld">
     <configuration name="TestChapterNew_GetChapter in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="mangaworld" />
       <working_directory value="$PROJECT_DIR$" />
@@ -74,18 +63,7 @@
       <pattern value="^\QTestChapterNew_GetChapter\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestChapterNew_GetManga in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="mangaworld" />
-      <working_directory value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/KiritoNya/mangaworld" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestChapterNew_GetManga\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestNewChapterNew in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestNewChapterNew in github.com/KiritoNya/mangaworld (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="mangaworld" />
       <working_directory value="$PROJECT_DIR$" />
       <framework value="gotest" />
@@ -96,7 +74,7 @@
       <pattern value="^\QTestNewChapterNew\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestNewManga in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestNewTrendingManga in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="mangaworld" />
       <working_directory value="$PROJECT_DIR$" />
       <framework value="gotest" />
@@ -104,10 +82,10 @@
       <package value="github.com/KiritoNya/mangaworld" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestNewManga\E$" />
+      <pattern value="^\QTestNewTrendingManga\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestVolum_GetChapters in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestTrending_GetChapter in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="mangaworld" />
       <working_directory value="$PROJECT_DIR$" />
       <framework value="gotest" />
@@ -115,16 +93,27 @@
       <package value="github.com/KiritoNya/mangaworld" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestVolum_GetChapters\E$" />
+      <pattern value="^\QTestTrending_GetChapter\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestTrending_GetManga in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="mangaworld" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/KiritoNya/mangaworld" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestTrending_GetManga\E$" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestTrending_GetChapter in github.com/KiritoNya/mangaworld" />
+        <item itemvalue="Go Test.TestTrending_GetManga in github.com/KiritoNya/mangaworld" />
+        <item itemvalue="Go Test.TestNewTrendingManga in github.com/KiritoNya/mangaworld" />
+        <item itemvalue="Go Test.TestNewChapterNew in github.com/KiritoNya/mangaworld (1)" />
         <item itemvalue="Go Test.TestChapterNew_GetChapter in github.com/KiritoNya/mangaworld" />
-        <item itemvalue="Go Test.TestNewManga in github.com/KiritoNya/mangaworld" />
-        <item itemvalue="Go Test.TestNewChapterNew in github.com/KiritoNya/mangaworld" />
-        <item itemvalue="Go Test.TestChapterNew_GetManga in github.com/KiritoNya/mangaworld" />
-        <item itemvalue="Go Test.TestVolum_GetChapters in github.com/KiritoNya/mangaworld" />
       </list>
     </recent_temporary>
   </component>
