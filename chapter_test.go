@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-const url = "https://www.mangaworld.cc/manga/1876/citrus-1/read/5fbbfab01c9bb544acdbbac0/1"
+const urlTest = "https://www.mangaworld.cc/manga/1876/citrus-1/read/5fbbfab01c9bb544acdbbac0/1"
 
 var testChapter = Chapter{
 	Number:      16,
@@ -72,7 +72,7 @@ var testChapter = Chapter{
 
 func TestChapter_GetNumber(t *testing.T) {
 
-	c, err := NewChapter(url)
+	c, err := NewChapter(urlTest)
 	if err != nil {
 		t.Fatalf("Error to create object")
 	}
@@ -91,7 +91,7 @@ func TestChapter_GetNumber(t *testing.T) {
 
 func TestChapter_GetPageNum(t *testing.T) {
 
-	c, err := NewChapter(url)
+	c, err := NewChapter(urlTest)
 	if err != nil {
 		t.Fatalf("Error to create object")
 	}
@@ -109,7 +109,7 @@ func TestChapter_GetPageNum(t *testing.T) {
 }
 
 func TestChapter_GetVisual(t *testing.T) {
-	c, err := NewChapter(url)
+	c, err := NewChapter(urlTest)
 	if err != nil {
 		t.Fatalf("Error to create object")
 	}
@@ -127,7 +127,7 @@ func TestChapter_GetVisual(t *testing.T) {
 }
 
 func TestChapter_GetVisualToday(t *testing.T) {
-	c, err := NewChapter(url)
+	c, err := NewChapter(urlTest)
 	if err != nil {
 		t.Fatalf("Error to create object")
 	}
@@ -145,7 +145,7 @@ func TestChapter_GetVisualToday(t *testing.T) {
 }
 
 func TestChapter_GetPageUrl(t *testing.T) {
-	c, err := NewChapter(url)
+	c, err := NewChapter(urlTest)
 	if err != nil {
 		t.Fatalf("Error to create object")
 	}
@@ -172,7 +172,7 @@ func TestChapter_GetPageUrl(t *testing.T) {
 }
 
 func TestChapter_GetDateAdd(t *testing.T) {
-	c, err := NewChapter(url)
+	c, err := NewChapter(urlTest)
 	if err != nil {
 		t.Fatalf("Error to create object")
 	}
@@ -190,7 +190,7 @@ func TestChapter_GetDateAdd(t *testing.T) {
 }
 
 func TestChapter_GetKeywords(t *testing.T) {
-	c, err := NewChapter(url)
+	c, err := NewChapter(urlTest)
 	if err != nil {
 		t.Fatalf("Error to create object")
 	}
