@@ -4,8 +4,12 @@ import (
 	"errors"
 	"github.com/KiritoNya/htmlutils"
 	strip "github.com/grokify/html-strip-tags-go"
+	"github.com/schollz/progressbar"
 	"golang.org/x/net/html"
+	"io"
 	"net/http"
+	"os"
+	"path"
 	"regexp"
 	"strconv"
 	"strings"
@@ -231,5 +235,33 @@ func (c *Chapter) GetKeywords() error {
 		c.KeyWords = append(c.KeyWords, key)
 	}
 
+	return nil
+}
+
+func (c *Chapter) Download(dest string) error {
+	for _, page := range c.PageUrl {
+		req, err := http.NewRequest("GET", page, nil)
+		if err != nil {
+			return err
+		}
+		name := path.Base(req.URL.Path)
+		resp, err := http.DefaultClient.Do(req)
+		if err != nil {
+			return err
+		}
+		defer resp.Body.Close()
+
+		f, err := os.OpenFile(dest+"/"+name, os.O_CREATE|os.O_WRONLY, 0644)
+		if err != nil {
+			return err
+		}
+		defer f.Close()
+
+		bar := progressbar.DefaultBytes(
+			resp.ContentLength,
+			name,
+		)
+		io.Copy(io.MultiWriter(f, bar), resp.Body)
+	}
 	return nil
 }
