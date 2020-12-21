@@ -1,5 +1,6 @@
 package mangaworld
 
+//State is a type that defines the state of manga.
 type State string
 
 const (
@@ -10,6 +11,7 @@ const (
 	Releasing State = "In corso"
 )
 
+//Function for mangaworld search pre-custom function.
 func searchState(stat State) string {
 	switch stat {
 	case Deleted:

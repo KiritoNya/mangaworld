@@ -7,12 +7,14 @@ import (
 	"strings"
 )
 
+//Trending is a object that contains all the information of the manga in trending.
 type Trending struct {
 	Manga   Manga
 	Chapter Chapter
 	node    *html.Node
 }
 
+//NewTrendingManga is a construct of Trending manga object.
 func NewTrendingManga(n *html.Node) (*Trending, error) {
 
 	_, err := htmlutils.QuerySelector(n, "a", "class", "thumb position-relative")
@@ -23,6 +25,7 @@ func NewTrendingManga(n *html.Node) (*Trending, error) {
 	return &Trending{node: n}, nil
 }
 
+//Add object Manga (only url field value) to the object.
 func (t *Trending) GetManga() error {
 	tagsA, err := htmlutils.GetGeneralTags(t.node, "a")
 	if err != nil {
@@ -38,6 +41,7 @@ func (t *Trending) GetManga() error {
 	return nil
 }
 
+//Add object Chapter (only url field value) to the object.
 func (t *Trending) GetChapter() error {
 	divs, err := htmlutils.QuerySelector(t.node, "div", "class", "chapter")
 	if err != nil {

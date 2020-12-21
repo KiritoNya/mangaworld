@@ -15,6 +15,7 @@ type Fansub struct {
 	Url  string
 }
 
+//Manga is a structure containing all the information relating to the manga and its chapters.
 type Manga struct {
 	Url              string
 	Title            string
@@ -41,6 +42,7 @@ type Manga struct {
 	resp             *html.Node
 }
 
+//NewManga is the constructor of the manga object.
 func NewManga(urlManga string) (*Manga, error) {
 
 	resp, err := http.Get(urlManga)
@@ -57,6 +59,7 @@ func NewManga(urlManga string) (*Manga, error) {
 	return &Manga{Url: urlManga, resp: node}, nil
 }
 
+//Add the title to the object.
 func (m *Manga) GetTitle() error {
 	h1, err := htmlutils.QuerySelector(m.resp, "h1", "class", "name bigger")
 	if err != nil {
@@ -68,6 +71,7 @@ func (m *Manga) GetTitle() error {
 	return nil
 }
 
+//Add the alternative title to the object.
 func (m *Manga) GetAlternativeTitle() error {
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12")
 	if err != nil {
@@ -81,6 +85,7 @@ func (m *Manga) GetAlternativeTitle() error {
 	return nil
 }
 
+//Add the cover url to the object.
 func (m *Manga) GetCoverUrl() error {
 	images, err := htmlutils.QuerySelector(m.resp, "img", "class", "rounded")
 	if err != nil {
@@ -92,6 +97,7 @@ func (m *Manga) GetCoverUrl() error {
 	return nil
 }
 
+//Add the genres to the object.
 func (m *Manga) GetGenre() error {
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12")
 	if err != nil {
@@ -111,6 +117,7 @@ func (m *Manga) GetGenre() error {
 	return nil
 }
 
+//Add authors to the object.
 func (m *Manga) GetAuthors() error {
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6")
 	if err != nil {
@@ -130,6 +137,7 @@ func (m *Manga) GetAuthors() error {
 	return nil
 }
 
+//Add artist to the object.
 func (m *Manga) GetArtists() error {
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6")
 	if err != nil {
@@ -149,6 +157,7 @@ func (m *Manga) GetArtists() error {
 	return nil
 }
 
+//Add type to the object.
 func (m *Manga) GetType() error {
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6")
 	if err != nil {
@@ -166,6 +175,7 @@ func (m *Manga) GetType() error {
 	return nil
 }
 
+//Add state to the object.
 func (m *Manga) GetState() error {
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6")
 	if err != nil {
@@ -183,6 +193,7 @@ func (m *Manga) GetState() error {
 	return nil
 }
 
+//Add visual to the object.
 func (m *Manga) GetVisual() error {
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6")
 	if err != nil {
@@ -203,6 +214,7 @@ func (m *Manga) GetVisual() error {
 	return nil
 }
 
+//Add start years to the object.
 func (m *Manga) GetYearsStart() error {
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6")
 	if err != nil {
@@ -220,6 +232,7 @@ func (m *Manga) GetYearsStart() error {
 	return nil
 }
 
+//Add fansub to the object.
 func (m *Manga) GetFansub() error {
 	var f Fansub
 
@@ -245,6 +258,7 @@ func (m *Manga) GetFansub() error {
 	return nil
 }
 
+//Add animeworld url to the object.
 func (m *Manga) GetAnimeworldUrl() error {
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6 p-0 mt-1")
 	if err != nil {
@@ -267,6 +281,7 @@ func (m *Manga) GetAnimeworldUrl() error {
 
 }
 
+//Add My Anime List url to the object.
 func (m *Manga) GetMalUrl() error {
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6 p-0 mt-1")
 	if err != nil {
@@ -289,6 +304,7 @@ func (m *Manga) GetMalUrl() error {
 
 }
 
+//Add anilist url to the object.
 func (m *Manga) GetAnilistUrl() error {
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6 p-0 mt-1")
 	if err != nil {
@@ -311,6 +327,7 @@ func (m *Manga) GetAnilistUrl() error {
 
 }
 
+//Add manga updates url to the object.
 func (m *Manga) GetMangaUpdatesUrl() error {
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6 p-0 mt-1")
 	if err != nil {
@@ -333,6 +350,7 @@ func (m *Manga) GetMangaUpdatesUrl() error {
 
 }
 
+//Add plot to the object.
 func (m *Manga) GetPlot() error {
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "id", "noidungm")
 	if err != nil {
@@ -344,6 +362,7 @@ func (m *Manga) GetPlot() error {
 	return nil
 }
 
+//Add number of volumes to the object.
 func (m *Manga) GetVolumsNum() error {
 	tagsP, err := htmlutils.QuerySelector(m.resp, "p", "class", "volume-name d-inline")
 	if err != nil {
@@ -357,6 +376,7 @@ func (m *Manga) GetVolumsNum() error {
 	return nil
 }
 
+//Add number of chapters to the object.
 func (m *Manga) GetChaptersNum() error {
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "chap")
 	if err != nil {
@@ -378,6 +398,7 @@ func (m *Manga) GetChaptersNum() error {
 	return nil
 }
 
+//Add object Chapters (only url field value) to the object manga.
 func (m *Manga) GetChapters() error {
 
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "id", "chapterList")
@@ -407,6 +428,7 @@ func (m *Manga) GetChapters() error {
 	return nil
 }
 
+//Add relation to the object.
 func (m *Manga) GetRelations() error {
 	var mangas []Manga
 
@@ -471,6 +493,7 @@ func (m *Manga) GetRelations() error {
 	return nil
 }
 
+//Add keywords to the object.
 func (m *Manga) GetKeywords() error {
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "has-shadow top-wrapper p-3 mt-4 mb-3")
 	if err != nil {
@@ -490,6 +513,7 @@ func (m *Manga) GetKeywords() error {
 
 }
 
+//Download all chapters in the object in a folder defined by the dest parameter.
 func (m *Manga) Download(dest string) error {
 	for _, chapter := range m.Chapters {
 		err := chapter.Download(dest)

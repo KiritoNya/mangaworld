@@ -1,5 +1,6 @@
 package mangaworld
 
+//Genre is the type that defines the genre of a manga.
 type Genre string
 
 const (

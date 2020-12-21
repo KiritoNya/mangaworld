@@ -16,6 +16,7 @@ import (
 	"time"
 )
 
+//Chapter is a object with all chapters information.
 type Chapter struct {
 	Url         string
 	Number      int
@@ -28,6 +29,7 @@ type Chapter struct {
 	resp        *html.Node
 }
 
+//MonthNames is a map with the value int of italian months.
 var MonthNames = map[string]int{
 	"Gennaio":   1,
 	"Febbraio":  2,
@@ -43,6 +45,7 @@ var MonthNames = map[string]int{
 	"Dicembre":  12,
 }
 
+//NewChapter is a chapter constructor.
 func NewChapter(urlChapter string) (*Chapter, error) {
 	var c Chapter
 
@@ -79,6 +82,7 @@ func NewChapter(urlChapter string) (*Chapter, error) {
 	return &c, nil
 }
 
+//Add number of chapter to the object.
 func (c *Chapter) GetNumber() error {
 	sel, err := htmlutils.QuerySelector(c.resp, "select", "class", "chapter custom-select")
 	if err != nil {
@@ -105,6 +109,7 @@ func (c *Chapter) GetNumber() error {
 	return nil
 }
 
+//Add the number of pages of chapter to the object.
 func (c *Chapter) GetPageNum() error {
 	sel, err := htmlutils.QuerySelector(c.resp, "select", "class", "page custom-select")
 	if err != nil {
@@ -126,6 +131,7 @@ func (c *Chapter) GetPageNum() error {
 	return nil
 }
 
+//Add the visual of chapter to the object.
 func (c *Chapter) GetVisual() error {
 	divs, err := htmlutils.QuerySelector(c.resp, "div", "class", "col-12 col-md-4 d-flex justify-content-start align-items-center")
 	if err != nil {
@@ -142,6 +148,7 @@ func (c *Chapter) GetVisual() error {
 	return nil
 }
 
+//Add the daily visual to the object.
 func (c *Chapter) GetVisualToday() error {
 	divs, err := htmlutils.QuerySelector(c.resp, "div", "class", "col-12 col-md-4 d-flex justify-content-start justify-content-md-end align-items-center")
 	if err != nil {
@@ -158,6 +165,7 @@ func (c *Chapter) GetVisualToday() error {
 	return nil
 }
 
+//Add urls chapter pages to the object.
 func (c *Chapter) GetPageUrl() error {
 	if c.PageNum == 0 {
 		return errors.New("Error, page number of chapter not found, execute GetNumPage before this method")
@@ -196,6 +204,7 @@ func (c *Chapter) GetPageUrl() error {
 	return nil
 }
 
+//Add the date added to the object.
 func (c *Chapter) GetDateAdd() error {
 	divs, err := htmlutils.QuerySelector(c.resp, "div", "class", "col-12 col-md-4 d-flex justify-content-start justify-content-md-center align-items-center")
 	if err != nil {
@@ -218,6 +227,7 @@ func (c *Chapter) GetDateAdd() error {
 	return nil
 }
 
+//Add keywords to the object.
 func (c *Chapter) GetKeywords() error {
 	divs, err := htmlutils.QuerySelector(c.resp, "div", "class", "has-shadow top-wrapper p-3 mt-4 mb-3")
 	if err != nil {
@@ -238,6 +248,7 @@ func (c *Chapter) GetKeywords() error {
 	return nil
 }
 
+//Download all pages of chapter in a folder defined by the dest parameter.
 func (c *Chapter) Download(dest string) error {
 	for _, page := range c.PageUrl {
 		req, err := http.NewRequest("GET", page, nil)

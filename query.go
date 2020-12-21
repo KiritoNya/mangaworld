@@ -11,6 +11,7 @@ import (
 	"time"
 )
 
+//Sort is a type that defines the type of sorting in query results.
 type Sort string
 
 const (
@@ -23,6 +24,7 @@ const (
 	minYears int  = 1968
 )
 
+//Query is a object query that allows you to build your own personalized search.
 type Query struct {
 	MangaName struct {
 		Val    string
@@ -55,15 +57,18 @@ type Query struct {
 	SortType Sort
 }
 
+//NewQuery is a constructor of object Query.
 func NewQuery() *Query {
 	return &Query{SortType: AZ}
 }
 
+//Set manga name value to the object.
 func (q *Query) SetMangaName(name string) {
 	q.MangaName.Active = true
 	q.MangaName.Val = url.QueryEscape(name)
 }
 
+//Set manga genres value to the object.
 func (q *Query) SetGenres(genres []Genre) {
 	q.Genre.Active = true
 	for _, genre := range genres {
@@ -71,6 +76,7 @@ func (q *Query) SetGenres(genres []Genre) {
 	}
 }
 
+//Set manga types value to the object.
 func (q *Query) SetMangaTypes(mangaTypes []Type) {
 	q.MangaType.Active = true
 	for _, mangaType := range mangaTypes {
@@ -78,6 +84,7 @@ func (q *Query) SetMangaTypes(mangaTypes []Type) {
 	}
 }
 
+//Set manga status value to the object.
 func (q *Query) SetStatus(states []State) {
 	q.State.Active = true
 	for _, state := range states {
@@ -85,6 +92,7 @@ func (q *Query) SetStatus(states []State) {
 	}
 }
 
+//Set manga authors value to the object.
 func (q *Query) SetAuthors(authors []string) {
 	q.Author.Active = true
 	for _, auth := range authors {
@@ -92,6 +100,7 @@ func (q *Query) SetAuthors(authors []string) {
 	}
 }
 
+//Set manga artists value to the object.
 func (q *Query) SetArtists(artists []string) {
 	q.Artist.Active = true
 	for _, artist := range artists {
@@ -99,6 +108,7 @@ func (q *Query) SetArtists(artists []string) {
 	}
 }
 
+//Set manga years value to the object.
 func (q *Query) SetYears(years []string) {
 
 	for _, year := range years {
@@ -113,10 +123,12 @@ func (q *Query) SetYears(years []string) {
 	}
 }
 
+//Set sort result value to the object.
 func (q *Query) SetSort(method Sort) {
 	q.SortType = method
 }
 
+//Executes the query that was previously set.
 func (q *Query) Do() (mangas []Manga, err error) {
 
 	query := q.createQuery()
@@ -153,6 +165,7 @@ func (q *Query) Do() (mangas []Manga, err error) {
 	return mangas, nil
 }
 
+//create the query string for mangaworld pre-custom search.
 func (q *Query) createQuery() string {
 	urlSearch := UrlSearch
 	multiParams := false

@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+//Volum is a object with all volum information.
 type Volum struct {
 	Number   int
 	Name     string
@@ -14,6 +15,7 @@ type Volum struct {
 	resp     *html.Node
 }
 
+//NewVolum is a construct of volum object.
 func NewVolum(VolumNode *html.Node) (*Volum, error) {
 
 	//Check
@@ -25,6 +27,8 @@ func NewVolum(VolumNode *html.Node) (*Volum, error) {
 	return &Volum{resp: VolumNode}, nil
 }
 
+//Add name value to the object.
+//EX: "Volume 01".
 func (v *Volum) GetName() error {
 
 	tagsP, err := htmlutils.QuerySelector(v.resp, "p", "class", "volume-name d-inline")
@@ -36,6 +40,7 @@ func (v *Volum) GetName() error {
 	return nil
 }
 
+//Add number of volum to the object.
 func (v *Volum) GetNumber() error {
 
 	err := v.GetName()
@@ -51,6 +56,7 @@ func (v *Volum) GetNumber() error {
 	return nil
 }
 
+//Add object Chapter to the object.
 func (v *Volum) GetChapters() error {
 
 	chContain, err := htmlutils.QuerySelector(v.resp, "div", "class", "volume-chapters pl-2")

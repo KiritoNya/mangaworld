@@ -1,5 +1,6 @@
 package mangaworld
 
+//Type define the type of the manga.
 type Type string
 
 const (

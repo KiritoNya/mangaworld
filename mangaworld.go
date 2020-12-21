@@ -1,3 +1,7 @@
+// Copyright KiritoNya.
+// All Rights Reserved.
+
+//Package to download manga and get related information from mangaworld.
 package mangaworld
 
 import (
@@ -7,33 +11,41 @@ import (
 	"strconv"
 )
 
+//UrlSite is base URL of site MangaWorld.
 const UrlSite = "https://www.mangaworld.cc/"
+
+//UrlSearch is base URL for query search.
 const UrlSearch = "https://www.mangaworld.cc/archive?"
 
+//SearchByName returns a manga slice obtained through a query with only the manga name.
 func SearchByName(name string) (manga []Manga, err error) {
 	q := NewQuery()
 	q.SetMangaName(name)
 	return q.Do()
 }
 
+//SearchByGenre returns a manga slice obtained through a query with only the manga genre.
 func SearchByGenre(genres []Genre) (manga []Manga, err error) {
 	q := NewQuery()
 	q.SetGenres(genres)
 	return q.Do()
 }
 
+//SearchByType returns a manga slice obtained through a query with only the manga type.
 func SearchByType(types []Type) (manga []Manga, err error) {
 	q := NewQuery()
 	q.SetMangaTypes(types)
 	return q.Do()
 }
 
+//SearchByStatus return a manga slice obtained through a query with only the manga status.
 func SearchByStatus(states []State) (manga []Manga, err error) {
 	q := NewQuery()
 	q.SetStatus(states)
 	return q.Do()
 }
 
+//TrendingManga returns a trending slice with all manga trending and relative chapter.
 func TrendingManga() (mangaTrend []Trending, err error) {
 	resp, err := http.Get(UrlSite)
 	if err != nil {
@@ -77,6 +89,7 @@ func TrendingManga() (mangaTrend []Trending, err error) {
 	return mangaTrend, err
 }
 
+//MonthlyManga returns a slice of manga with all the top 10 manga of the month.
 func MonthlyManga() (mangas []Manga, err error) {
 	resp, err := http.Get(UrlSite)
 	if err != nil {
@@ -115,6 +128,8 @@ func MonthlyManga() (mangas []Manga, err error) {
 	return mangas, nil
 }
 
+//ChaptersNew returns a slice of chapters with the chapters just released.
+//Accept as a parameter the number of new manga you want to get.
 func ChaptersNew(num int) (chapters []ChapterNew, err error) {
 
 	for k := 0; k <= (num / 17); k++ {

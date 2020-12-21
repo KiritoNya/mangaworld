@@ -5,12 +5,14 @@ import (
 	"golang.org/x/net/html"
 )
 
+//ChapterNew is a object of new chapters just released.
 type ChapterNew struct {
 	MangaNew Manga
 	Chapters []Chapter
 	node     *html.Node
 }
 
+//NewChapterNew is a construct of ChapterNew object.
 func NewChapterNew(n *html.Node) (*ChapterNew, error) {
 
 	_, err := htmlutils.QuerySelector(n, "a", "class", "thumb position-relative")
@@ -26,37 +28,8 @@ func NewChapterNew(n *html.Node) (*ChapterNew, error) {
 	return &ChapterNew{node: n}, nil
 }
 
+//Add object Manga(only url field value) to the object.
 func (cn *ChapterNew) GetManga() error {
-
-	/*resp, err := http.Get(UrlSite)
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-
-	node, err := html.Parse(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-
-	grid, err := htmlutils.QuerySelector(node, "div", "class", "comics-grid")
-	if err != nil {
-		return nil, err
-	}
-
-	chDivs, err := htmlutils.QuerySelector(grid[0], "li", "class", "entry")
-	if err != nil {
-		return nil, err
-	}
-
-	numPag, err := getNewestNumPage(node)
-	if err != nil {
-		return nil, err
-	}
-
-	if num > ((numPag-1)*16) - (len(chDivs)-1) {
-		return nil, errors.New("Number inserted greater than the new chapters released")
-	}*/
 
 	tagsA, err := htmlutils.GetGeneralTags(cn.node, "a")
 	if err != nil {
@@ -71,9 +44,9 @@ func (cn *ChapterNew) GetManga() error {
 	cn.MangaNew.Url = string(url[0])
 
 	return nil
-
 }
 
+//Add object Chapter(only url field value) to the object.
 func (cn *ChapterNew) GetChapter() error {
 
 	divs, err := htmlutils.QuerySelector(cn.node, "div", "class", "content")

@@ -12,6 +12,20 @@
       <change beforePath="$PROJECT_DIR$/../eventiStorici/eventi.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../eventiStorici/eventi_test.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../htmlutils" beforeDir="false" afterPath="$PROJECT_DIR$/../htmlutils" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter.go" beforeDir="false" afterPath="$PROJECT_DIR$/chapter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapterNew.go" beforeDir="false" afterPath="$PROJECT_DIR$/chapterNew.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters_new.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/genre.go" beforeDir="false" afterPath="$PROJECT_DIR$/genre.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manga.go" beforeDir="false" afterPath="$PROJECT_DIR$/manga.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manga_new.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mangaworld.go" beforeDir="false" afterPath="$PROJECT_DIR$/mangaworld.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monthlyManga.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/query.go" beforeDir="false" afterPath="$PROJECT_DIR$/query.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/state.go" beforeDir="false" afterPath="$PROJECT_DIR$/state.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trendingNow.go" beforeDir="false" afterPath="$PROJECT_DIR$/trendingNow.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/type.go" beforeDir="false" afterPath="$PROJECT_DIR$/type.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/volum.go" beforeDir="false" afterPath="$PROJECT_DIR$/volum.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +46,7 @@
   </component>
   <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1lIGhSs6Y3lMjbjKfrXCo2uIQnv" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
