@@ -6,9 +6,9 @@ import (
 )
 
 type ChapterNew struct {
-	MangaNew  Manga
-	ChapteNew Chapter
-	node      *html.Node
+	MangaNew Manga
+	Chapters []Chapter
+	node     *html.Node
 }
 
 func NewChapterNew(n *html.Node) (*ChapterNew, error) {
@@ -74,25 +74,6 @@ func (cn *ChapterNew) GetManga() error {
 
 }
 
-/*func getNewestNumPage(node *html.Node) (int, error) {
-	divs, err := htmlutils.QuerySelector(node, "div", "class", "pagination-container d-flex justify-content-center")
-	if err != nil {
-		return 0, err
-	}
-
-	li, err := htmlutils.QuerySelector(divs[0], "li", "class", "page-link")
-	if err != nil {
-		return 0, err
-	}
-
-	num, err := strconv.Atoi(string(htmlutils.GetNodeText(li[0], "li")))
-	if err != nil {
-		return 0, err
-	}
-
-	return num, nil
-}*/
-
 func (cn *ChapterNew) GetChapter() error {
 
 	divs, err := htmlutils.QuerySelector(cn.node, "div", "class", "content")
@@ -105,17 +86,18 @@ func (cn *ChapterNew) GetChapter() error {
 		return err
 	}
 
-	tagsA, err := htmlutils.GetGeneralTags(divsCh[0], "a")
-	if err != nil {
-		return err
+	if _, err := htmlutils.QuerySelector(divsCh[0], "img", "alt", "nuovo"); err == nil {
+		tagsA, err := htmlutils.GetGeneralTags(divsCh[0], "a")
+		if err != nil {
+			return err
+		}
+
+		url, err := htmlutils.GetValueAttr(tagsA[0], "a", "href")
+		if err != nil {
+			return err
+		}
+
+		cn.Chapters = append(cn.Chapters, Chapter{Url: string(url[0])})
 	}
-
-	url, err := htmlutils.GetValueAttr(tagsA[0], "a", "href")
-	if err != nil {
-		return err
-	}
-
-	cn.ChapteNew.Url = string(url[0])
-
 	return nil
 }

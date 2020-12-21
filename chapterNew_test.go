@@ -9,10 +9,12 @@ import (
 
 var testChapterNew = ChapterNew{
 	MangaNew: Manga{
-		Url: "https://www.mangaworld.cc/manga/1708/one-piece/", //It changes constantly
+		Url: "https://www.mangaworld.cc/manga/1984/creepy-cat/", //It changes constantly
 	},
-	ChapteNew: Chapter{
-		Url: "https://www.mangaworld.cc/manga/1708/one-piece/read/5fdca37df2ab2d434db97c84",
+	Chapters: []Chapter{
+		{Url: "https://www.mangaworld.cc/manga/1984/creepy-cat/read/5fe0df428d9b52437fffc98c"},
+		{Url: "https://www.mangaworld.cc/manga/1984/creepy-cat/read/5fdf37356fe15b440da486de"},
+		{Url: "https://www.mangaworld.cc/manga/1984/creepy-cat/read/5fde5f001ff3df43a02fe365"},
 	},
 }
 
@@ -117,9 +119,11 @@ func TestChapterNew_GetChapter(t *testing.T) {
 		t.Error("Error to get chapter of chapter new: ", err)
 	}
 
-	if cn.ChapteNew.Url != testChapterNew.ChapteNew.Url {
-		t.Error("Error not obtain", testChapterNew.ChapteNew.Url, "but obtain", cn.ChapteNew.Url)
-	} else {
-		t.Log("Chapter link chapter new [OK]")
+	for i, chapter := range cn.Chapters {
+		if chapter.Url != testChapterNew.Chapters[i].Url {
+			t.Error("Error not obtain", testChapterNew.Chapters[i].Url, "but obtain", chapter.Url)
+		} else {
+			t.Log("Chapter link chapter new", i, "[OK]")
+		}
 	}
 }
