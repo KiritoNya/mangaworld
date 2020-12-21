@@ -12,14 +12,6 @@
       <change beforePath="$PROJECT_DIR$/../eventiStorici/eventi.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../eventiStorici/eventi_test.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../htmlutils" beforeDir="false" afterPath="$PROJECT_DIR$/../htmlutils" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Volum.go" beforeDir="false" afterPath="$PROJECT_DIR$/volum.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapterNew.go" beforeDir="false" afterPath="$PROJECT_DIR$/chapterNew.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapterNew_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/chapterNew_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manga.go" beforeDir="false" afterPath="$PROJECT_DIR$/manga.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mangaworld.go" beforeDir="false" afterPath="$PROJECT_DIR$/mangaworld.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mangaworld_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/mangaworld_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trenfingNow_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/trendingNow_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,6 +153,11 @@
     <MESSAGE value="Add method &quot;SearchState&quot;" />
     <MESSAGE value="Add functions search" />
     <MESSAGE value="Other changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Other changes" />
+    <MESSAGE value="Change name of struct attributes" />
+    <MESSAGE value="Add methods &quot;Download&quot;" />
+    <MESSAGE value="Rename file" />
+    <MESSAGE value="Add other functions" />
+    <MESSAGE value="Some changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some changes" />
   </component>
 </project>
