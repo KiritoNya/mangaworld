@@ -8,4 +8,4 @@ You can see the package documentation at this link [https://godoc.org/github.com
 
 ##Usage
 
-Import "github.com/KiritoNya/mangaworld" into your Go project and start using all the functions and methods that the package makes available to you.
+Import **"github.com/KiritoNya/mangaworld"** into your Go project and start using all the functions and methods that the package makes available to you.
