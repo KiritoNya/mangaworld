@@ -2,8 +2,6 @@ package mangaworld
 
 import (
 	"errors"
-	"fmt"
-	//"fmt"
 	"github.com/KiritoNya/htmlutils"
 	"github.com/grokify/html-strip-tags-go"
 	"golang.org/x/net/html"
@@ -380,6 +378,35 @@ func (m *Manga) GetChaptersNum() error {
 	return nil
 }
 
+func (m *Manga) GetChapters() error {
+
+	divs, err := htmlutils.QuerySelector(m.resp, "div", "id", "chapterList")
+
+	tagsA, err := htmlutils.QuerySelector(divs[0], "a", "class", "chap")
+	if err != nil {
+		return err
+	}
+
+	for _, tagA := range tagsA {
+
+		url, err := htmlutils.GetValueAttr(tagA, "a", "href")
+		if err != nil {
+			return err
+		}
+
+		m.Chapters = append(m.Chapters, Chapter{Url: string(url[0])})
+	}
+	//Reverse
+	a := make([]Chapter, len(m.Chapters))
+	copy(a, m.Chapters)
+	for i := len(a)/2 - 1; i >= 0; i-- {
+		opp := len(a) - 1 - i
+		a[i], a[opp] = a[opp], a[i]
+	}
+	m.Chapters = a
+	return nil
+}
+
 func (m *Manga) GetRelations() error {
 	var mangas []Manga
 
@@ -396,8 +423,6 @@ func (m *Manga) GetRelations() error {
 		if err != nil {
 			return err
 		}
-
-		fmt.Println(htmlutils.RenderNode(tagA[0]))
 
 		url, err := htmlutils.GetValueAttr(tagA[0], "a", "href")
 		if err != nil {
@@ -464,3 +489,9 @@ func (m *Manga) GetKeywords() error {
 	return nil
 
 }
+
+/*func (m *Manga) Download() error {
+	for _, chapter := range m.Chapters {
+
+	}
+}*/

@@ -1,6 +1,8 @@
 package mangaworld
 
-import "testing"
+import (
+	"testing"
+)
 
 const (
 	link = "https://www.mangaworld.cc/manga/1876/citrus-1"
@@ -41,6 +43,11 @@ var testManga = Manga{
 	Plot:            "Sequel di Citrus che racconta le nuove vicende di Mei e Yuzu.",
 	VolumsNum:       3,
 	ChaptersNum:     16,
+	Chapters: []Chapter{
+		{Url: "https://www.mangaworld.cc/manga/1876/citrus-1/read/5fbbfab01c9bb544acdbbaac"},
+		{Url: "https://www.mangaworld.cc/manga/1876/citrus-1/read/5fbbfab01c9bb544acdbbaad"},
+		{Url: "https://www.mangaworld.cc/manga/1876/citrus-1/read/5fbbfab01c9bb544acdbbaae"},
+	},
 	Relations: []Manga{
 		{
 			Title:      "Citrus",
@@ -436,6 +443,28 @@ func TestManga_GetChaptersNum(t *testing.T) {
 		t.Log("Chapters num [OK]")
 	}
 
+}
+
+func TestManga_GetChapters(t *testing.T) {
+	m, err := NewManga(link)
+	if err != nil {
+		t.Error("Error to create object")
+	}
+
+	err = m.GetChapters()
+	if err != nil {
+		t.Error("Error to get chapters: ", err)
+	}
+
+	m.Chapters = m.Chapters[:3]
+
+	for i, chapter := range m.Chapters {
+		if chapter.Url != testManga.Chapters[i].Url {
+			t.Error("Error not obtain", testManga.Chapters[i].Url, "but obtain", chapter.Url)
+		} else {
+			t.Log("Chapters ", i, "[OK]")
+		}
+	}
 }
 
 func TestManga_GetRelations(t *testing.T) {
