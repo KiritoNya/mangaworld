@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0046473b-4b38-4655-af3c-b05764729190" name="Default Changelist" comment="Add other methods and relative tests">
-      <change afterPath="$PROJECT_DIR$/query_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapter_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/chapter_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter.go" beforeDir="false" afterPath="$PROJECT_DIR$/chapter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manga.go" beforeDir="false" afterPath="$PROJECT_DIR$/manga.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manga_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/manga_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mangaworld.go" beforeDir="false" afterPath="$PROJECT_DIR$/mangaworld.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mangaworld_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/mangaworld_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/query.go" beforeDir="false" afterPath="$PROJECT_DIR$/query.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/state.go" beforeDir="false" afterPath="$PROJECT_DIR$/state.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,8 +51,8 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
-  <component name="RunManager" selected="Go Test.TestSearchByStatus in github.com/KiritoNya/mangaworld">
-    <configuration name="TestQuery_Do in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Test.TestManga_GetChapters in github.com/KiritoNya/mangaworld">
+    <configuration name="TestManga_GetChapters in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="mangaworld" />
       <working_directory value="$PROJECT_DIR$" />
       <framework value="gotest" />
@@ -62,10 +60,10 @@
       <package value="github.com/KiritoNya/mangaworld" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestQuery_Do\E$" />
+      <pattern value="^\QTestManga_GetChapters\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestSearchByGenre in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestManga_GetChaptersNum in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="mangaworld" />
       <working_directory value="$PROJECT_DIR$" />
       <framework value="gotest" />
@@ -73,7 +71,7 @@
       <package value="github.com/KiritoNya/mangaworld" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestSearchByGenre\E$" />
+      <pattern value="^\QTestManga_GetChaptersNum\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestSearchByName in github.com/KiritoNya/mangaworld" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -111,11 +109,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestManga_GetChapters in github.com/KiritoNya/mangaworld" />
+        <item itemvalue="Go Test.TestManga_GetChaptersNum in github.com/KiritoNya/mangaworld" />
         <item itemvalue="Go Test.TestSearchByStatus in github.com/KiritoNya/mangaworld" />
         <item itemvalue="Go Test.TestSearchByType in github.com/KiritoNya/mangaworld" />
         <item itemvalue="Go Test.TestSearchByName in github.com/KiritoNya/mangaworld" />
-        <item itemvalue="Go Test.TestQuery_Do in github.com/KiritoNya/mangaworld" />
-        <item itemvalue="Go Test.TestSearchByGenre in github.com/KiritoNya/mangaworld" />
       </list>
     </recent_temporary>
   </component>
@@ -146,6 +144,10 @@
     <MESSAGE value="Add methods for Volum file" />
     <MESSAGE value="Add some changes and new methods and tests for trendingNow chapters manga" />
     <MESSAGE value="Add some changes, add file &quot;Query&quot;, add methods Query" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add some changes, add file &quot;Query&quot;, add methods Query" />
+    <MESSAGE value="Add methods at query file and relative tests" />
+    <MESSAGE value="Add method &quot;SearchState&quot;" />
+    <MESSAGE value="Add functions search" />
+    <MESSAGE value="Other changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Other changes" />
   </component>
 </project>
