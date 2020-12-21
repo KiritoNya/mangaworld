@@ -490,8 +490,12 @@ func (m *Manga) GetKeywords() error {
 
 }
 
-/*func (m *Manga) Download() error {
+func (m *Manga) Download(dest string) error {
 	for _, chapter := range m.Chapters {
-
+		err := chapter.Download(dest)
+		if err != nil {
+			return err
+		}
 	}
-}*/
+	return nil
+}
