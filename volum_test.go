@@ -9,7 +9,7 @@ import (
 
 const urlVolume = "https://www.mangaworld.cc/manga/1876/citrus-1/"
 
-var testVolum = Volum{
+var testVolume = Volume{
 	Name:   "Volume 03",
 	Number: 3,
 	Chapters: []Chapter{
@@ -19,7 +19,7 @@ var testVolum = Volum{
 	},
 }
 
-func TestNewVolum(t *testing.T) {
+func TestNewVolume(t *testing.T) {
 
 	resp, err := http.Get(urlVolume)
 	if err != nil {
@@ -43,7 +43,7 @@ func TestNewVolum(t *testing.T) {
 	}
 }
 
-func TestVolum_GetName(t *testing.T) {
+func TestVolume_GetName(t *testing.T) {
 	resp, err := http.Get(urlVolume)
 	if err != nil {
 		t.Fatal(err)
@@ -60,7 +60,7 @@ func TestVolum_GetName(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	v, err := NewVolum(divs[0])
+	v, err := NewVolume(divs[0])
 	if err != nil {
 		t.Fatal("Error to create object Volum: ", err)
 	}
@@ -70,14 +70,14 @@ func TestVolum_GetName(t *testing.T) {
 		t.Error("Error to get Volume name: ", err)
 	}
 
-	if v.Name != testVolum.Name {
-		t.Error("Error not obtain", testVolum.Name, "but obtain", v.Name)
+	if v.Name != testVolume.Name {
+		t.Error("Error not obtain", testVolume.Name, "but obtain", v.Name)
 	} else {
 		t.Log("Volum name [OK]")
 	}
 }
 
-func TestVolum_GetNumber(t *testing.T) {
+func TestVolume_GetNumber(t *testing.T) {
 	resp, err := http.Get(urlVolume)
 	if err != nil {
 		t.Fatal(err)
@@ -105,13 +105,13 @@ func TestVolum_GetNumber(t *testing.T) {
 	}
 
 	if v.Number != testVolum.Number {
-		t.Error("Error not obtain", testVolum.Number, "but obtain", v.Number)
+		t.Error("Error not obtain", testVolume.Number, "but obtain", v.Number)
 	} else {
 		t.Log("Volum number [OK]")
 	}
 }
 
-func TestVolum_GetChapters(t *testing.T) {
+func TestVolume_GetChapters(t *testing.T) {
 	resp, err := http.Get(urlVolume)
 	if err != nil {
 		t.Fatal(err)
@@ -140,7 +140,7 @@ func TestVolum_GetChapters(t *testing.T) {
 
 	for i, chapter := range v.Chapters {
 		if chapter.Url != testVolum.Chapters[i].Url {
-			t.Error("Error not obtain", testVolum.Chapters[i].Url, "but obtain", chapter.Url)
+			t.Error("Error not obtain", testVolume.Chapters[i].Url, "but obtain", chapter.Url)
 		} else {
 			t.Log("Chapter ", i, "[OK]")
 		}
