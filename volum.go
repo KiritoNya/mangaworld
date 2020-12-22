@@ -7,16 +7,17 @@ import (
 	"strings"
 )
 
-//Volum is a object with all volum information.
-type Volum struct {
+//Volume is a object with all volum information.
+type Volume struct {
 	Number   int
 	Name     string
 	Chapters []Chapter
 	resp     *html.Node
 }
 
-//NewVolum is a construct of volum object.
-func NewVolum(VolumNode *html.Node) (*Volum, error) {
+//NewVolume is a construct of volum object.
+//You have to pass as a parameter the section dedicated to volumes on the manga page.
+func NewVolume(VolumNode *html.Node) (*Volume, error) {
 
 	//Check
 	_, err := htmlutils.QuerySelector(VolumNode, "div", "class", "volume w-100 py-2")
@@ -24,12 +25,12 @@ func NewVolum(VolumNode *html.Node) (*Volum, error) {
 		return nil, err
 	}
 
-	return &Volum{resp: VolumNode}, nil
+	return &Volume{resp: VolumNode}, nil
 }
 
 //Add name value to the object.
 //EX: "Volume 01".
-func (v *Volum) GetName() error {
+func (v *Volume) GetName() error {
 
 	tagsP, err := htmlutils.QuerySelector(v.resp, "p", "class", "volume-name d-inline")
 	if err != nil {
@@ -40,8 +41,8 @@ func (v *Volum) GetName() error {
 	return nil
 }
 
-//Add number of volum to the object.
-func (v *Volum) GetNumber() error {
+//Add number of volume to the object.
+func (v *Volume) GetNumber() error {
 
 	err := v.GetName()
 	if err != nil {
@@ -57,7 +58,7 @@ func (v *Volum) GetNumber() error {
 }
 
 //Add object Chapter to the object.
-func (v *Volum) GetChapters() error {
+func (v *Volume) GetChapters() error {
 
 	chContain, err := htmlutils.QuerySelector(v.resp, "div", "class", "volume-chapters pl-2")
 	if err != nil {
