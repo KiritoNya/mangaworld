@@ -24,7 +24,7 @@ const (
 	minYears int  = 1968
 )
 
-//Query is a object query that allows you to build your own personalized search.
+//Query is an object query that allows you to build your own personalized search.
 type Query struct {
 	MangaName struct {
 		Val    string
