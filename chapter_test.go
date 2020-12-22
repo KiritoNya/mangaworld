@@ -209,3 +209,24 @@ func TestChapter_GetKeywords(t *testing.T) {
 	}
 
 }
+
+func TestChapter_Download(t *testing.T) {
+	c, err := NewChapter("https://www.mangaworld.cc/manga/1876/citrus-1/read/5fbbfab01c9bb544acdbbaac/1")
+	if err != nil {
+		t.Error(err)
+	}
+
+	/*err = c.GetPageNum()
+	if err != nil {
+		t.Error(err)
+	}*/
+	c.PageNum = 2
+
+	err = c.GetPageUrl()
+	if err != nil {
+		t.Error(err)
+	}
+
+	c.Download("/home/kirito/Scrivania/download")
+
+}

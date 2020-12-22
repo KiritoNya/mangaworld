@@ -3,8 +3,8 @@ package mangaworld
 import (
 	"errors"
 	"github.com/KiritoNya/htmlutils"
+	pb "github.com/cheggaaa/pb/v3"
 	strip "github.com/grokify/html-strip-tags-go"
-	"github.com/schollz/progressbar"
 	"golang.org/x/net/html"
 	"io"
 	"net/http"
@@ -266,20 +266,20 @@ func (c *Chapter) Download(dest string) error {
 		if err != nil {
 			return err
 		}
-		defer f.Close()
-		
+		defer writer.Close()
+
 		numBytes := resp.ContentLength
 		reader := io.LimitReader(resp.Body, numBytes)
 		tmpl := `{{ magenta "prefix"}} {{ bar . (magenta "[") "◼" (cycle . "□" ) "□" "]"}} {{speed . | magenta }} {{percent . | magenta}}`
-		
+
 		bar := pb.ProgressBarTemplate(tmpl).Start64(numBytes)
 		bar.Set("prefix", name)
 		bar.Set(pb.Bytes, true)
 		bar.Set(pb.SIBytesPrefix, true)
 		barReader := bar.NewProxyReader(reader)
-		
+
 		io.Copy(writer, barReader)
-		
+
 		bar.Finish()
 	}
 	return nil

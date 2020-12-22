@@ -37,7 +37,7 @@ func TestNewVolume(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	_, err = NewVolum(divs[0])
+	_, err = NewVolume(divs[0])
 	if err != nil {
 		t.Fatal("Error to create object Volum: ", err)
 	}
@@ -94,7 +94,7 @@ func TestVolume_GetNumber(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	v, err := NewVolum(divs[0])
+	v, err := NewVolume(divs[0])
 	if err != nil {
 		t.Fatal("Error to create object Volum: ", err)
 	}
@@ -104,7 +104,7 @@ func TestVolume_GetNumber(t *testing.T) {
 		t.Error("Error to get Volum number: ", err)
 	}
 
-	if v.Number != testVolum.Number {
+	if v.Number != testVolume.Number {
 		t.Error("Error not obtain", testVolume.Number, "but obtain", v.Number)
 	} else {
 		t.Log("Volum number [OK]")
@@ -128,7 +128,7 @@ func TestVolume_GetChapters(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	v, err := NewVolum(divs[0])
+	v, err := NewVolume(divs[0])
 	if err != nil {
 		t.Fatal("Error to create object Volum: ", err)
 	}
@@ -139,7 +139,7 @@ func TestVolume_GetChapters(t *testing.T) {
 	}
 
 	for i, chapter := range v.Chapters {
-		if chapter.Url != testVolum.Chapters[i].Url {
+		if chapter.Url != testVolume.Chapters[i].Url {
 			t.Error("Error not obtain", testVolume.Chapters[i].Url, "but obtain", chapter.Url)
 		} else {
 			t.Log("Chapter ", i, "[OK]")
