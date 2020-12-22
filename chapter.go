@@ -16,7 +16,7 @@ import (
 	"time"
 )
 
-//Chapter is a object with all chapters information.
+//Chapter is an object with all chapters information.
 type Chapter struct {
 	Url         string
 	Number      int
