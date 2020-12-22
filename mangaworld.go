@@ -38,7 +38,7 @@ func SearchByType(types []Type) (manga []Manga, err error) {
 	return q.Do()
 }
 
-//SearchByStatus return a manga slice obtained through a query with only the manga status.
+//SearchByStatus returns a manga slice obtained through a query with only the manga status.
 func SearchByStatus(states []State) (manga []Manga, err error) {
 	q := NewQuery()
 	q.SetStatus(states)
@@ -129,7 +129,7 @@ func MonthlyManga() (mangas []Manga, err error) {
 }
 
 //ChaptersNew returns a slice of chapters with the chapters just released.
-//Accept as a parameter the number of new manga you want to get.
+//It accepts as a parameter the number of new manga you want to get.
 func ChaptersNew(num int) (chapters []ChapterNew, err error) {
 
 	for k := 0; k <= (num / 17); k++ {
