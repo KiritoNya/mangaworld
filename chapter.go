@@ -262,17 +262,25 @@ func (c *Chapter) Download(dest string) error {
 		}
 		defer resp.Body.Close()
 
-		f, err := os.OpenFile(dest+"/"+name, os.O_CREATE|os.O_WRONLY, 0644)
+		writer, err := os.OpenFile(dest+"/"+name, os.O_CREATE|os.O_WRONLY, 0644)
 		if err != nil {
 			return err
 		}
 		defer f.Close()
-
-		bar := progressbar.DefaultBytes(
-			resp.ContentLength,
-			name,
-		)
-		io.Copy(io.MultiWriter(f, bar), resp.Body)
+		
+		numBytes := resp.ContentLength
+		reader := io.LimitReader(resp.Body, numBytes)
+		tmpl := `{{ magenta "prefix"}} {{ bar . (magenta "[") "◼" (cycle . "□" ) "□" "]"}} {{speed . | magenta }} {{percent . | magenta}}`
+		
+		bar := pb.ProgressBarTemplate(tmpl).Start64(numBytes)
+		bar.Set("prefix", name)
+		bar.Set(pb.Bytes, true)
+		bar.Set(pb.SIBytesPrefix, true)
+		barReader := bar.NewProxyReader(reader)
+		
+		io.Copy(writer, barReader)
+		
+		bar.Finish()
 	}
 	return nil
 }
