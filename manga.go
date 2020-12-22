@@ -15,7 +15,7 @@ type Fansub struct {
 	Url  string
 }
 
-//Manga is a structure containing all the information relating to the manga and its chapters.
+//Manga is a structure containing all information relating to the manga and its chapters.
 type Manga struct {
 	Url              string
 	Title            string
