@@ -5,7 +5,7 @@ import (
 	"golang.org/x/net/html"
 )
 
-//ChapterNew is a object of new chapters just released.
+//ChapterNew is an object of new chapters just released.
 type ChapterNew struct {
 	MangaNew Manga
 	Chapters []Chapter
@@ -28,7 +28,7 @@ func NewChapterNew(n *html.Node) (*ChapterNew, error) {
 	return &ChapterNew{node: n}, nil
 }
 
-//Add object Manga(only url field value) to the object.
+//Add object Manga (only url field value) to the object.
 func (cn *ChapterNew) GetManga() error {
 
 	tagsA, err := htmlutils.GetGeneralTags(cn.node, "a")
@@ -46,7 +46,7 @@ func (cn *ChapterNew) GetManga() error {
 	return nil
 }
 
-//Add object Chapter(only url field value) to the object.
+//Add object Chapter (only url field value) to the object.
 func (cn *ChapterNew) GetChapter() error {
 
 	divs, err := htmlutils.QuerySelector(cn.node, "div", "class", "content")
