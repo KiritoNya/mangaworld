@@ -160,7 +160,12 @@ func (q *Query) Do() (mangas []Manga, err error) {
 			return nil, err
 		}
 
-		mangas = append(mangas, Manga{Url: string(url[0])})
+		manga, err := NewManga(string(url[0]))
+		if err != nil {
+			return nil, err
+		}
+
+		mangas = append(mangas, *manga)
 	}
 	return mangas, nil
 }
