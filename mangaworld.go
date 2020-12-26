@@ -5,6 +5,7 @@
 package mangaworld
 
 import (
+	"fmt"
 	"github.com/KiritoNya/htmlutils"
 	"golang.org/x/net/html"
 	"net/http"
@@ -17,32 +18,482 @@ const UrlSite = "https://www.mangaworld.cc/"
 //UrlSearch is base URL for query search.
 const UrlSearch = "https://www.mangaworld.cc/archive?"
 
-//SearchByName returns a manga slice obtained through a query with only the manga name.
-func SearchByName(name string) (manga []Manga, err error) {
+//ListManga is a type that contain a slice of manga
+type ListManga struct {
+	Mangas []Manga
+}
+
+//NewListManga is an constructor of ListManga object
+func NewListManga() *ListManga {
+	return &ListManga{}
+}
+
+//SearchByName is a query with only the manga name. Add to the object ListManga a slice of Manga.
+func (lm *ListManga) SearchByName(name string) error {
 	q := NewQuery()
 	q.SetMangaName(name)
-	return q.Do()
+	mangas, err := q.Do()
+	if err != nil {
+		return err
+	}
+	lm.Mangas = mangas
+	return nil
 }
 
-//SearchByGenre returns a manga slice obtained through a query with only the manga genre.
-func SearchByGenre(genres []Genre) (manga []Manga, err error) {
+//SearchByGenre is a query with only the manga genre. Add to the object ListManga a slice of Manga.
+func (lm *ListManga) SearchByGenre(genres []Genre) error {
 	q := NewQuery()
 	q.SetGenres(genres)
-	return q.Do()
+	mangas, err := q.Do()
+	if err != nil {
+		return err
+	}
+	lm.Mangas = mangas
+	return nil
 }
 
-//SearchByType returns a manga slice obtained through a query with only the manga type.
-func SearchByType(types []Type) (manga []Manga, err error) {
+//SearchByType is a query with only the manga type. Add to the object ListManga a slice of Manga.
+func (lm *ListManga) SearchByType(types []Type) error {
 	q := NewQuery()
 	q.SetMangaTypes(types)
-	return q.Do()
+	mangas, err := q.Do()
+	if err != nil {
+		return err
+	}
+	lm.Mangas = mangas
+	return nil
 }
 
-//SearchByStatus returns a manga slice obtained through a query with only the manga status.
-func SearchByStatus(states []State) (manga []Manga, err error) {
+//SearchByStatus is a query with only the manga status. Add to the object ListManga a slice of Manga.
+func (lm *ListManga) SearchByStatus(states []State) error {
 	q := NewQuery()
 	q.SetStatus(states)
-	return q.Do()
+	mangas, err := q.Do()
+	if err != nil {
+		return err
+	}
+	lm.Mangas = mangas
+	return nil
+}
+
+//MonthlyManga add to the object a slice of manga with all the top 10 manga of the month.
+func (lm *ListManga) MonthlyManga() error {
+	resp, err := http.Get(UrlSite)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	node, err := html.Parse(resp.Body)
+	if err != nil {
+		return err
+	}
+
+	divs, err := htmlutils.QuerySelector(node, "div", "class", "top-wrapper")
+	if err != nil {
+		return err
+	}
+
+	entries, err := htmlutils.QuerySelector(divs[1], "div", "class", "short")
+	if err != nil {
+		return err
+	}
+
+	for _, entry := range entries {
+		tagsA, err := htmlutils.GetGeneralTags(entry, "a")
+		if err != nil {
+			return err
+		}
+
+		url, err := htmlutils.GetValueAttr(tagsA[0], "a", "href")
+		if err != nil {
+			return err
+		}
+
+		lm.Mangas = append(lm.Mangas, Manga{Url: string(url[0])})
+	}
+	return nil
+}
+
+//AddTitle add the title to the object Manga of the manga in the list.
+func (lm *ListManga) AddTitles() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetTitle()
+		if err != nil {
+			return err
+		}
+		fmt.Println(lm.Mangas[i].Title)
+	}
+	return nil
+}
+
+//AddTitlesAlternatives add the alternative titles to the object Manga of the manga in the list.
+func (lm *ListManga) AddTitlesAlternatives() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetAlternativeTitle()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddCoverUrls add the cover url to the object Manga of the manga in the list.
+func (lm *ListManga) AddCoverUrls() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetCoverUrl()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddGenres add the genres to the object Manga of the manga in the list.
+func (lm *ListManga) AddGenres() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetGenre()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddGenres add the authors to the object Manga of the manga in the list.
+func (lm *ListManga) AddAuthors() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetAuthors()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddArtists add the artists to the object Manga of the manga in the list.
+func (lm *ListManga) AddArtists() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetArtists()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddTypes add the type to the object Manga of the manga in the list.
+func (lm *ListManga) AddTypes() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetType()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddStates add the state to the object Manga of the manga in the list.
+func (lm *ListManga) AddStates() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetState()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddPlots add the plot to the object Manga of the manga in the list.
+func (lm *ListManga) AddPlots() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetPlot()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddYearsStart add the year start to the object Manga of the manga in the list.
+func (lm *ListManga) AddYearsStart() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetYearsStart()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddVolumsNum add the volume num to the object Manga of the manga in the list.
+func (lm *ListManga) AddVolumesNum() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetVolumsNum()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddChaptersNum add the chapters num to the object Manga of the manga in the list.
+func (lm *ListManga) AddChaptersNum() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetChaptersNum()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddChapters add the chapters to the object Manga of the manga in the list.
+func (lm *ListManga) AddChapters() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetChapters()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddRelations add the relations to the object Manga of the manga in the list.
+func (lm *ListManga) AddRelations() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetRelations()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddVisuals add the visual to the object Manga of the manga in the list.
+func (lm *ListManga) AddVisuals() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetVisual()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddFansubs add the fansub to the object Manga of the manga in the list.
+func (lm *ListManga) AddFansubs() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetFansub()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddAnimeworldUrls add the animeworld url to the object Manga of the manga in the list.
+func (lm *ListManga) AddAnimeworldUrls() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetAnimeworldUrl()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddAnilistUrls add the anilist url to the object Manga of the manga in the list.
+func (lm *ListManga) AddAnilistUrls() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetAnilistUrl()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddMangaUpdatesUrls add the manga updates url to the object Manga of the manga in the list.
+func (lm *ListManga) AddMangaUpdatesUrls() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetMangaUpdatesUrl()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddKeywords add the keywords to the object Manga of the manga in the list.
+func (lm *ListManga) AddKeywords() (err error) {
+	for i, _ := range lm.Mangas {
+		err = lm.Mangas[i].GetKeywords()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//GetUrls returns a slice of string with the urls of manga in the list.
+func (lm *ListManga) GetUrls() (urls []string) {
+	for _, manga := range lm.Mangas {
+		urls = append(urls, manga.Title)
+	}
+	return urls
+}
+
+//GetTitle returns a slice of string with the titles of manga in the list.
+func (lm *ListManga) GetTitles() (titles []string) {
+	for _, manga := range lm.Mangas {
+		titles = append(titles, manga.Title)
+	}
+	return titles
+}
+
+//GetAlternativeTitles returns a matrix of string with the alternative titles of manga in the list.
+func (lm *ListManga) GetAlternativeTitles() (altTitles [][]string) {
+	for _, manga := range lm.Mangas {
+		altTitles = append(altTitles, manga.TitleAlternative)
+	}
+	return altTitles
+}
+
+//GetCoverUrls returns a slice of string with the cover urls of manga in the list.
+func (lm *ListManga) GetCoverUrls() (coverUrls []string) {
+	for _, manga := range lm.Mangas {
+		coverUrls = append(coverUrls, manga.Url)
+	}
+	return coverUrls
+}
+
+//GetGenres returns a matrix of Genre with the genres of manga in the list.
+func (lm *ListManga) GetGenres() (genres [][]Genre) {
+	for _, manga := range lm.Mangas {
+		genres = append(genres, manga.Genres)
+	}
+	return genres
+}
+
+//GetAuthors returns a matrix of string with the authors of manga in the list.
+func (lm *ListManga) GetAuthors() (authors [][]string) {
+	for _, manga := range lm.Mangas {
+		authors = append(authors, manga.Authors)
+	}
+	return authors
+}
+
+//GetArtists returns a matrix of string with the artists of manga in the list.
+func (lm *ListManga) GetArtists() (artists [][]string) {
+	for _, manga := range lm.Mangas {
+		artists = append(artists, manga.Authors)
+	}
+	return artists
+}
+
+//GetTypes returns a slice of Type with the types of manga in the list.
+func (lm *ListManga) GetTypes() (types []Type) {
+	for _, manga := range lm.Mangas {
+		types = append(types, manga.Type)
+	}
+	return types
+}
+
+//GetStates returns a slice of State with the states of manga in the list.
+func (lm *ListManga) GetStates() (states []State) {
+	for _, manga := range lm.Mangas {
+		states = append(states, manga.State)
+	}
+	return states
+}
+
+//GetPlots returns a slice of string with the plots of manga in the list.
+func (lm *ListManga) GetPlots() (plots []string) {
+	for _, manga := range lm.Mangas {
+		plots = append(plots, manga.Plot)
+	}
+	return plots
+}
+
+//GetYearsStart returns a slice of string with the years start of manga in the list.
+func (lm *ListManga) GetYearsStart() (years []string) {
+	for _, manga := range lm.Mangas {
+		years = append(years, manga.Plot)
+	}
+	return years
+}
+
+//GetVolumsNum returns a slice of int with the number of volums of manga in the list.
+func (lm *ListManga) GetVolumsNum() (numVolums []int) {
+	for _, manga := range lm.Mangas {
+		numVolums = append(numVolums, manga.VolumsNum)
+	}
+	return numVolums
+}
+
+//GetChaptersNum returns a slice of int with the number of chapters of manga in the list.
+func (lm *ListManga) GetChaptersNum() (numChapters []int) {
+	for _, manga := range lm.Mangas {
+		numChapters = append(numChapters, manga.VolumsNum)
+	}
+	return numChapters
+}
+
+//GetChapters returns a matrix of Chapters with the chapters of manga in the list.
+func (lm *ListManga) GetChapters() (chapters [][]Chapter) {
+	for _, manga := range lm.Mangas {
+		chapters = append(chapters, manga.Chapters)
+	}
+	return chapters
+}
+
+//GetVisuals returns a slice of int with the number of visuals of manga in the list.
+func (lm *ListManga) GetVisuals() (visuals []int) {
+	for _, manga := range lm.Mangas {
+		visuals = append(visuals, manga.Visual)
+	}
+	return visuals
+}
+
+//GetFansubs returns a slice of Fansub with the fansubs of manga in the list.
+func (lm *ListManga) GetFansubs() (fansubs []Fansub) {
+	for _, manga := range lm.Mangas {
+		fansubs = append(fansubs, manga.Fansub)
+	}
+	return fansubs
+}
+
+//GetAnimeworldUrls returns a slice of string with the animeworld urls of manga in the list.
+func (lm *ListManga) GetAnimeworldUrls() (animeUrls []string) {
+	for _, manga := range lm.Mangas {
+		animeUrls = append(animeUrls, manga.AnimeworldUrl)
+	}
+	return animeUrls
+}
+
+//GetAnilistUrls returns a slice of string with the anilist urls of manga in the list.
+func (lm *ListManga) GetAnilistUrls() (anilistUrls []string) {
+	for _, manga := range lm.Mangas {
+		anilistUrls = append(anilistUrls, manga.AnilistUrl)
+	}
+	return anilistUrls
+}
+
+//GetMangaUpdatesUrls returns a slice of string with the manga updates urls of manga in the list.
+func (lm *ListManga) GetMangaUpdatesUrls() (mangaUpUrls []string) {
+	for _, manga := range lm.Mangas {
+		mangaUpUrls = append(mangaUpUrls, manga.MangaUpdatesUrl)
+	}
+	return mangaUpUrls
+}
+
+//GetKeywords returns a matrix of string with the keywords of manga in the list.
+func (lm *ListManga) GetKeywords() (keywords [][]string) {
+	for _, manga := range lm.Mangas {
+		keywords = append(keywords, manga.Keywords)
+	}
+	return keywords
 }
 
 //TrendingManga returns a trending slice with all manga trending and relative chapter.
@@ -87,45 +538,6 @@ func TrendingManga() (mangaTrend []Trending, err error) {
 		mangaTrend = append(mangaTrend, *tm)
 	}
 	return mangaTrend, err
-}
-
-//MonthlyManga returns a slice of manga with all the top 10 manga of the month.
-func MonthlyManga() (mangas []Manga, err error) {
-	resp, err := http.Get(UrlSite)
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-
-	node, err := html.Parse(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-
-	divs, err := htmlutils.QuerySelector(node, "div", "class", "top-wrapper")
-	if err != nil {
-		return nil, err
-	}
-
-	entries, err := htmlutils.QuerySelector(divs[1], "div", "class", "short")
-	if err != nil {
-		return nil, err
-	}
-
-	for _, entry := range entries {
-		tagsA, err := htmlutils.GetGeneralTags(entry, "a")
-		if err != nil {
-			return nil, err
-		}
-
-		url, err := htmlutils.GetValueAttr(tagsA[0], "a", "href")
-		if err != nil {
-			return nil, err
-		}
-
-		mangas = append(mangas, Manga{Url: string(url[0])})
-	}
-	return mangas, nil
 }
 
 //ChaptersNew returns a slice of chapters with the chapters just released.

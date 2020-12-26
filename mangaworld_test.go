@@ -10,14 +10,16 @@ func TestSearchByGenre(t *testing.T) {
 		{Url: "https://www.mangaworld.cc/manga/817/6-hours-and-5-minutes"},
 	}
 
-	mangas, err := SearchByGenre([]Genre{Yuri})
+	lm := NewListManga()
+
+	err := lm.SearchByGenre([]Genre{Yuri})
 	if err != nil {
 		t.Fatal("Error to search manga: ", err)
 	}
 
-	mangas = mangas[:2]
+	lm.Mangas = lm.Mangas[:2]
 
-	for i, manga := range mangas {
+	for i, manga := range lm.Mangas {
 		if manga.Url != result[i].Url {
 			t.Error("Error not obtain", result[i].Url, "but obtain", manga.Url)
 		} else {
@@ -32,12 +34,14 @@ func TestSearchByName(t *testing.T) {
 		{Url: "https://www.mangaworld.cc/manga/1876/citrus-1"},
 	}
 
-	mangas, err := SearchByName("citrus")
+	lm := NewListManga()
+
+	err := lm.SearchByName("citrus")
 	if err != nil {
 		t.Fatal("Error to search manga: ", err)
 	}
 
-	for i, manga := range mangas {
+	for i, manga := range lm.Mangas {
 		if manga.Url != result[i].Url {
 			t.Error("Error not obtain", result[i].Url, "but obtain", manga.Url)
 		} else {
@@ -52,14 +56,16 @@ func TestSearchByType(t *testing.T) {
 		{Url: "https://www.mangaworld.cc/manga/1151/1-3-romantica"},
 	}
 
-	mangas, err := SearchByType([]Type{Manga_type})
+	lm := NewListManga()
+
+	err := lm.SearchByType([]Type{Manga_type})
 	if err != nil {
 		t.Fatal("Error to search manga: ", err)
 	}
 
-	mangas = mangas[:2]
+	lm.Mangas = lm.Mangas[:2]
 
-	for i, manga := range mangas {
+	for i, manga := range lm.Mangas {
 		if manga.Url != result[i].Url {
 			t.Error("Error not obtain", result[i].Url, "but obtain", manga.Url)
 		} else {
@@ -74,14 +80,16 @@ func TestSearchByStatus(t *testing.T) {
 		{Url: "https://www.mangaworld.cc/manga/1895/100-nichigo-ni-kuufuku-de-taore-maid-ni-naru-onna-no-ko"},
 	}
 
-	mangas, err := SearchByStatus([]State{Releasing})
+	lm := NewListManga()
+
+	err := lm.SearchByStatus([]State{Releasing})
 	if err != nil {
 		t.Fatal("Error to search manga: ", err)
 	}
 
-	mangas = mangas[:2]
+	lm.Mangas = lm.Mangas[:2]
 
-	for i, manga := range mangas {
+	for i, manga := range lm.Mangas {
 		if manga.Url != result[i].Url {
 			t.Error("Error not obtain", result[i].Url, "but obtain", manga.Url)
 		} else {
@@ -100,17 +108,19 @@ func TestMonthlyManga(t *testing.T) {
 		{Url: "https://www.mangaworld.cc/manga/1816/shingeki-no-kyojin"},
 		{Url: "https://www.mangaworld.cc/manga/1708/one-piece"},
 		{Url: "https://www.mangaworld.cc/manga/1674/jujutsu-kaisen"},
-		{Url: "https://www.mangaworld.cc/manga/716/kimetsu-no-yaiba"},
 		{Url: "https://www.mangaworld.cc/manga/2278/berserk"},
+		{Url: "https://www.mangaworld.cc/manga/716/kimetsu-no-yaiba"},
 		{Url: "https://www.mangaworld.cc/manga/1747/black-clover"},
 	}
 
-	mangas, err := MonthlyManga()
+	lm := NewListManga()
+
+	err := lm.MonthlyManga()
 	if err != nil {
 		t.Error("Error to ge monthly manga:", err)
 	}
 
-	for i, manga := range mangas {
+	for i, manga := range lm.Mangas {
 		if manga.Url != result[i].Url {
 			t.Error("Error not obtain", result[i].Url, "but obtain", manga.Url)
 		} else {
