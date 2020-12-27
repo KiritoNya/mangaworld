@@ -19,6 +19,7 @@ import (
 //Chapter is an object with all chapters information.
 type Chapter struct {
 	Url         string
+	Volume      int
 	Number      int
 	PageNum     int
 	Visual      int
@@ -80,6 +81,32 @@ func NewChapter(urlChapter string) (*Chapter, error) {
 	c.Url = urlChapter
 
 	return &c, nil
+}
+
+//Add number of volume of chapter to the object.
+func (c *Chapter) GetVolume() error {
+	sel, err := htmlutils.QuerySelector(c.resp, "select", "class", "volume custom-select")
+	if err != nil {
+		return err
+	}
+
+	options, err := htmlutils.GetGeneralTags(sel[0], "option")
+	if err != nil {
+		return err
+	}
+
+	for _, option := range options {
+		if strings.Contains(htmlutils.RenderNode(option), "selected") {
+			volumeString := string(htmlutils.GetNodeText(option, "option"))
+			volumeString = strings.Replace(volumeString, "Volume ", "", -1)
+			c.Volume, err = strconv.Atoi(volumeString)
+			if err != nil {
+				return err
+			}
+			break
+		}
+	}
+	return nil
 }
 
 //Add number of chapter to the object.

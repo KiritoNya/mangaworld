@@ -8,6 +8,7 @@ import (
 const urlTest = "https://www.mangaworld.cc/manga/1876/citrus-1/read/5fbbfab01c9bb544acdbbac0/1"
 
 var testChapter = Chapter{
+	Volume:      3,
 	Number:      16,
 	PageNum:     22,
 	Visual:      1196, //changes constantly
@@ -68,6 +69,24 @@ var testChapter = Chapter{
 		"Citrus+ MangaWorld",
 	},
 	resp: nil,
+}
+
+func TestChapter_GetVolume(t *testing.T) {
+	c, err := NewChapter(urlTest)
+	if err != nil {
+		t.Fatalf("Error to create object")
+	}
+
+	err = c.GetVolume()
+	if err != nil {
+		t.Error("Error to get chapter volume: ", err)
+	}
+
+	if c.Volume != testChapter.Volume {
+		t.Error("Error not obtain", testChapter.Volume, "but obtain", c.Volume)
+	} else {
+		t.Log("Chapter volume [OK]")
+	}
 }
 
 func TestChapter_GetNumber(t *testing.T) {
