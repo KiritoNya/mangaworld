@@ -10,6 +10,7 @@ import (
 	"golang.org/x/net/html"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 //UrlSite is base URL of site MangaWorld.
@@ -21,6 +22,10 @@ const UrlSearch = "https://www.mangaworld.cc/archive?"
 //ListManga is a type that contain a slice of manga
 type ListManga struct {
 	Mangas []Manga
+}
+
+type ListChapter struct {
+	Chapters []Chapter
 }
 
 //NewListManga is an constructor of ListManga object
@@ -249,9 +254,9 @@ func (lm *ListManga) AddChaptersNum() (err error) {
 }
 
 //AddChapters add the chapters to the object Manga of the manga in the list.
-func (lm *ListManga) AddChapters() (err error) {
+func (lm *ListManga) AddChapters(start, end int) (err error) {
 	for i, _ := range lm.Mangas {
-		err = lm.Mangas[i].GetChapters()
+		err = lm.Mangas[i].GetChapters(start, end)
 		if err != nil {
 			return err
 		}
@@ -492,6 +497,171 @@ func (lm *ListManga) GetMangaUpdatesUrls() (mangaUpUrls []string) {
 func (lm *ListManga) GetKeywords() (keywords [][]string) {
 	for _, manga := range lm.Mangas {
 		keywords = append(keywords, manga.Keywords)
+	}
+	return keywords
+}
+
+//NewChapterList is an constructor of ListChapter object.
+func NewChapterList() *ListChapter {
+	return &ListChapter{}
+}
+
+//AddNumVolumes add number of volumes of chapters to the Chapter objects.
+func (lc *ListChapter) AddNumVolumes() error {
+	for i, _ := range lc.Chapters {
+		err := lc.Chapters[i].GetVolume()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddNumber add numbers of chapters to the Chapter objects.
+func (lc *ListChapter) AddNumber() error {
+	for i, _ := range lc.Chapters {
+		err := lc.Chapters[i].GetNumber()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddPageNum add number of pages of chapters to the Chapter objects.
+func (lc *ListChapter) AddPageNums() error {
+	for i, _ := range lc.Chapters {
+		err := lc.Chapters[i].GetPageNum()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddVisual add number of visuals of chapters to the Chapter objects.
+func (lc *ListChapter) AddVisuals() error {
+	for i, _ := range lc.Chapters {
+		err := lc.Chapters[i].GetVisual()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddVisualToday add number of daily visuals of chapters to the Chapter objects.
+func (lc *ListChapter) AddVisualsToday() error {
+	for i, _ := range lc.Chapters {
+		err := lc.Chapters[i].GetVisualToday()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddPagesUrls add pages urls of chapters to the Chapter objects.
+func (lc *ListChapter) AddPagesUrls() error {
+	for i, _ := range lc.Chapters {
+		err := lc.Chapters[i].GetPageUrl()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddDateAdd add date of addition of chapters to the Chapter objects.
+func (lc *ListChapter) AddDateAdd() error {
+	for i, _ := range lc.Chapters {
+		err := lc.Chapters[i].GetDateAdd()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//AddKeywords add keywords of chapters to the Chapter objects.
+func (lc *ListChapter) AddKeywords() error {
+	for i, _ := range lc.Chapters {
+		err := lc.Chapters[i].GetKeywords()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//GetUrls returns a slice of string with urls of the chapters contained in the ListChapter.
+func (lc *ListChapter) GetUrls() (urls []string) {
+	for i, _ := range lc.Chapters {
+		urls = append(urls, lc.Chapters[i].Url)
+	}
+	return urls
+}
+
+//GetNumVolumes returns a slice of int with number of volumes of the chapters contained in the ListChapter.
+func (lc *ListChapter) GetNumVolumes() (numVolumes []int) {
+	for i, _ := range lc.Chapters {
+		numVolumes = append(numVolumes, lc.Chapters[i].Volume)
+	}
+	return numVolumes
+}
+
+//GetUrls returns a slice of int with numbers of the chapters contained in the ListChapter.
+func (lc *ListChapter) GetNumber() (numbers []int) {
+	for i, _ := range lc.Chapters {
+		numbers = append(numbers, lc.Chapters[i].Number)
+	}
+	return numbers
+}
+
+//GetPageNums returns a slice of int with pages numbers of the chapters contained in the ListChapter.
+func (lc *ListChapter) GetPageNums() (pageNumbers []int) {
+	for i, _ := range lc.Chapters {
+		pageNumbers = append(pageNumbers, lc.Chapters[i].PageNum)
+	}
+	return pageNumbers
+}
+
+//GetVisuals returns a slice of int with visuals of the chapters contained in the ListChapter.
+func (lc *ListChapter) GetVisuals() (visuals []int) {
+	for i, _ := range lc.Chapters {
+		visuals = append(visuals, lc.Chapters[i].Visual)
+	}
+	return visuals
+}
+
+//GetVisualsToday returns a slice of int with daily visuals of the chapters contained in the ListChapter.
+func (lc *ListChapter) GetVisualsToday() (dailyVisuals []int) {
+	for i, _ := range lc.Chapters {
+		dailyVisuals = append(dailyVisuals, lc.Chapters[i].VisualToday)
+	}
+	return dailyVisuals
+}
+
+//GetPagesUrls returns a matrix of string with pages urls of the chapters contained in the ListChapter.
+func (lc *ListChapter) GetPagesUrls() (pagesUrls [][]string) {
+	for i, _ := range lc.Chapters {
+		pagesUrls = append(pagesUrls, lc.Chapters[i].PageUrl)
+	}
+	return pagesUrls
+}
+
+//GetDatesAdd returns a slice of time.Time with the dates add of the chapters contained in the ListChapter.
+func (lc *ListChapter) GetDatesAdd() (dates []time.Time) {
+	for i, _ := range lc.Chapters {
+		dates = append(dates, lc.Chapters[i].DateAdd)
+	}
+	return dates
+}
+
+//GetKeywords returns a matrix of string with the keywords of the chapters contained in the ListChapter.
+func (lc *ListChapter) GetKeywords() (keywords [][]string) {
+	for i, _ := range lc.Chapters {
+		keywords = append(keywords, lc.Chapters[i].KeyWords)
 	}
 	return keywords
 }
