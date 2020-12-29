@@ -235,17 +235,6 @@ func TestChapter_Download(t *testing.T) {
 		t.Error(err)
 	}
 
-	/*err = c.GetPageNum()
-	if err != nil {
-		t.Error(err)
-	}*/
-	c.PageNum = 2
-
-	err = c.GetPageUrl()
-	if err != nil {
-		t.Error(err)
-	}
-
-	c.Download("/home/kirito/Scrivania/download")
+	c.Download("C:\\Users\\KiritoNya\\Desktop\\Nuova")
 
 }

@@ -63,13 +63,13 @@ func NewChapter(urlChapter string) (*Chapter, error) {
 
 	urlMatrix := strings.Split(urlChapter, "/")
 	//Check if the link contain the number of page
-	match, err := regexp.MatchString("[0-9]+", urlMatrix[len(urlMatrix)-1])
+	match, err := regexp.MatchString("^[0-9]$", urlMatrix[len(urlMatrix)-1])
 	if err != nil {
 		return nil, err
 	}
 
 	if match == true {
-		urlMatrix = urlMatrix[:len(urlMatrix)-1]
+		urlMatrix = urlMatrix[:len(urlMatrix)]
 		urlChapter = strings.Join(urlMatrix, "/")
 	}
 
@@ -277,6 +277,22 @@ func (c *Chapter) GetKeywords() error {
 
 //Download all pages of chapter in a folder defined by the dest parameter.
 func (c *Chapter) Download(dest string) error {
+
+	//pageNum not set
+	if c.PageNum == 0 {
+		c.GetPageNum()
+	}
+
+	//pageUrl not set
+	if c.PageUrl == nil {
+		c.GetPageUrl()
+	}
+
+	//number not set
+	if c.Number == 0 {
+		c.GetNumber()
+	}
+
 	for _, page := range c.PageUrl {
 		req, err := http.NewRequest("GET", page, nil)
 		if err != nil {
@@ -289,7 +305,7 @@ func (c *Chapter) Download(dest string) error {
 		}
 		defer resp.Body.Close()
 
-		writer, err := os.OpenFile(dest+"/"+name, os.O_CREATE|os.O_WRONLY, 0644)
+		writer, err := os.OpenFile(dest+string(os.PathSeparator)+createNameFile(name, c.PageNum), os.O_CREATE|os.O_WRONLY, 0644)
 		if err != nil {
 			return err
 		}
@@ -310,4 +326,17 @@ func (c *Chapter) Download(dest string) error {
 		bar.Finish()
 	}
 	return nil
+}
+
+func createNameFile(nameFile string, maxPag int) string {
+	var str string
+	numString := strings.Split(nameFile, ".") //1.jpg
+	num, _ := strconv.Atoi(numString[0])
+	if num < 10 {
+		str += "0"
+	}
+	if maxPag > 99 && num < 100 {
+		str += "0"
+	}
+	return str + strconv.Itoa(num) + "." + numString[1]
 }
