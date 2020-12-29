@@ -399,7 +399,15 @@ func (m *Manga) GetChaptersNum() error {
 }
 
 //Add object Chapters (only url field value) to the object manga.
-func (m *Manga) GetChapters() error {
+func (m *Manga) GetChapters(start int, end int) error {
+
+	//Check parametres
+	if start < 1 {
+		return errors.New("<error> The \"start\" parameter must be greater than 0")
+	}
+	if end < 1 {
+		return errors.New("<error> The \"end\" parameter must be greater than 0")
+	}
 
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "id", "chapterList")
 
@@ -408,23 +416,38 @@ func (m *Manga) GetChapters() error {
 		return err
 	}
 
-	for _, tagA := range tagsA {
-
-		url, err := htmlutils.GetValueAttr(tagA, "a", "href")
-		if err != nil {
-			return err
-		}
-
-		m.Chapters = append(m.Chapters, Chapter{Url: string(url[0])})
+	//Check parametres
+	if end > len(tagsA)-1 {
+		return errors.New("<error> The \"end\" parameter is greater than the number of chapters.")
 	}
+	if start > len(tagsA)-1 {
+		return errors.New("<error> The \"start\" parameter is greater than the number of available chapters")
+	}
+
 	//Reverse
-	a := make([]Chapter, len(m.Chapters))
-	copy(a, m.Chapters)
+	a := make([]*html.Node, len(tagsA))
+	copy(a, tagsA)
 	for i := len(a)/2 - 1; i >= 0; i-- {
 		opp := len(a) - 1 - i
 		a[i], a[opp] = a[opp], a[i]
 	}
-	m.Chapters = a
+	tagsA = a
+
+	for i := start - 1; i < end; i++ {
+
+		url, err := htmlutils.GetValueAttr(tagsA[i], "a", "href")
+		if err != nil {
+			return err
+		}
+
+		c, err := NewChapter(string(url[0]))
+		if err != nil {
+			return err
+		}
+
+		m.Chapters = append(m.Chapters, *c)
+	}
+
 	return nil
 }
 
