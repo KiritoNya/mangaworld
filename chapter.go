@@ -313,10 +313,10 @@ func (c *Chapter) Download(dest string) error {
 
 		numBytes := resp.ContentLength
 		reader := io.LimitReader(resp.Body, numBytes)
-		tmpl := `{{ magenta "prefix"}} {{ bar . (magenta "[") "◼" (cycle . "□" ) "□" "]"}} {{speed . | magenta }} {{percent . | magenta}}`
+		tmpl := `{{ magenta "{prefix}"}} {{ bar . (magenta "[") "◼" (cycle . "□" ) "□" "]"}} {{speed . | magenta }} {{percent . | magenta}}`
+		tmpl = strings.Replace(tmpl, "{prefix}", name, -1)
 
 		bar := pb.ProgressBarTemplate(tmpl).Start64(numBytes)
-		bar.Set("prefix", name)
 		bar.Set(pb.Bytes, true)
 		bar.Set(pb.SIBytesPrefix, true)
 		barReader := bar.NewProxyReader(reader)

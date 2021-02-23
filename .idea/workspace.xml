@@ -2,21 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0046473b-4b38-4655-af3c-b05764729190" name="Default Changelist" comment="Add other methods and relative tests">
-      <change afterPath="$PROJECT_DIR$/../LearnGoProject/BasicEditing.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LearnGoProject/CodeCompletion.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LearnGoProject/Debugging.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LearnGoProject/IntentionActions.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LearnGoProject/Release.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LearnGoProject/main_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../animeworld/episode.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../animeworld/episode_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../animeworld/rss.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../animeworld/rss_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../animeworld/season.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KaoriServer/kaoriServer.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eraiRaws/.idea/eraiRaws.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eraiRaws/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eraiRaws/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../eventiStorici/date.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../eventiStorici/eventi.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../eventiStorici/eventi_test.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../htmlutils" beforeDir="false" afterPath="$PROJECT_DIR$/../htmlutils" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chapter.go" beforeDir="false" afterPath="$PROJECT_DIR$/chapter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapter_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/chapter_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/volume_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/volume_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manga.go" beforeDir="false" afterPath="$PROJECT_DIR$/manga.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manga_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/manga_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +58,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../htmlutils" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />

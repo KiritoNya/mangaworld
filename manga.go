@@ -233,6 +233,7 @@ func (m *Manga) GetYearsStart() error {
 }
 
 //Add fansub to the object.
+//TODO: Mettere apposto il fansub e altri poichè non è sempre in settima posizione
 func (m *Manga) GetFansub() error {
 	var f Fansub
 
@@ -417,10 +418,14 @@ func (m *Manga) GetChapters(start int, end int) error {
 	}
 
 	//Check parametres
-	if end > len(tagsA)-1 {
+	if m.ChaptersNum == 0 {
+		m.GetChaptersNum()
+	}
+
+	if end > m.ChaptersNum {
 		return errors.New("<error> The \"end\" parameter is greater than the number of chapters.")
 	}
-	if start > len(tagsA)-1 {
+	if start > m.ChaptersNum {
 		return errors.New("<error> The \"start\" parameter is greater than the number of available chapters")
 	}
 

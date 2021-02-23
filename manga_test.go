@@ -5,76 +5,84 @@ import (
 )
 
 const (
-	link = "https://www.mangaworld.cc/manga/1876/citrus-1"
+	link = "https://www.mangaworld.cc/manga/1919/kishuku-gakkou-no-juliet"
 )
 
 var testManga = Manga{
-	Title: "Citrus+",
+	Title: "Kishuku Gakkou no Juliet",
 	TitleAlternative: []string{
-		"Citrus Plus",
-		"シトラスプラス",
+		"Boarding School Juliet",
+		"Juliet of Boarding School",
+		"Kushuku Gakkou no Alice",
+		"Romio VS Juliet (French)",
+		"รักลับๆ ข้ามหอ ของนายหมากับน้องแมว (Thai)",
+		"寄宿学校のジュリエット",
+		"寄宿学校的朱丽叶",
+		"기숙학교의 줄리엣",
 	},
-	CoverUrl: "https://cdn.mangaworld.cc/mangas/5fa4d1817a7a701817de97e1.jpg",
+	CoverUrl: "https://cdn.mangaworld.cc/mangas/5fa62d90552b377191b013ec.jpg",
 	Genres: []Genre{
-		"Drammatico",
+		"Azione",
+		"Commedia",
+		"Ecchi",
+		"Harem",
 		"Romantico",
 		"Scolastico",
-		"Slice of Life",
-		"Yuri",
+		"Shounen",
 	},
 	Authors: []string{
-		"Saburouta",
+		"KANEDA Yousuke",
 	},
 	Artists: []string{
-		"Saburouta",
+		"KANEDA Yousuke",
 	},
 	Type:       Manga_type,
 	State:      Releasing,
-	Visual:     4215,
-	YearsStart: "2018",
+	Visual:     80627,
+	YearsStart: "2015",
 	Fansub: Fansub{
 		Name: "Phoenix Scans",
 		Url:  "https://www.phantomreader.com/",
 	},
-	AnimeworldUrl:   "https://www.animeworld.tv/play/citrus.vci_L/",
-	MALUrl:          "https://myanimelist.net/manga/117083",
-	AnilistUrl:      "https://anilist.co/manga/103884",
-	MangaUpdatesUrl: "https://www.mangaupdates.com/series.html?id=151981",
-	Plot:            "Sequel di Citrus che racconta le nuove vicende di Mei e Yuzu.",
-	VolumsNum:       3,
-	ChaptersNum:     16,
+	AnimeworldUrl:   "https://www.animeworld.tv/play/kishuku-gakkou-no-juliet.k8c0S/",
+	MALUrl:          "https://myanimelist.net/manga/91514",
+	AnilistUrl:      "https://anilist.co/manga/86279",
+	MangaUpdatesUrl: "https://www.mangaupdates.com/series.html?id=122123",
+	Plot:            "Juliet Persia e Romio Inuzuka sono a capo di due dormitori rivali presso la Dahlia Academy Boarding School, in cui risiedono gli studenti appartenenti a due paesi differenti, i “Black Dogs” e i “White Cats”. Le due fazioni sono in guerra tra loro per contendersi il controllo dell’isola in cui vivono. Juliet e Romio si dimostrano agli occhi dei loro compagni di dormitorio come acerrimi nemici, ma in realtà sono segretamente innamorati l’uno dell’altra e costretti a mantenere nascosta la loro relazione per non subire ripercussioni.",
+	VolumsNum:       11,
+	ChaptersNum:     68,
 	Chapters: []Chapter{
-		{Url: "https://www.mangaworld.cc/manga/1876/citrus-1/read/5fbbfab01c9bb544acdbbaac"},
-		{Url: "https://www.mangaworld.cc/manga/1876/citrus-1/read/5fbbfab01c9bb544acdbbaad"},
-		{Url: "https://www.mangaworld.cc/manga/1876/citrus-1/read/5fbbfab01c9bb544acdbbaae"},
+		{Url: "https://www.mangaworld.cc/manga/1919/kishuku-gakkou-no-juliet/read/601ab540f0ba3f6b7ca7b8e3"},
+		{Url: "https://www.mangaworld.cc/manga/1919/kishuku-gakkou-no-juliet/read/601d8fb51116ba6b71afa17c"},
+		{Url: "https://www.mangaworld.cc/manga/1919/kishuku-gakkou-no-juliet/read/60242979b6bece4364bc46f4"},
 	},
 	Relations: []Manga{
 		{
-			Title:      "Citrus",
-			CoverUrl:   "https://cdn.mangaworld.cc/mangas/5f73f50ac360051e41af919e.jpg?1607352479165",
-			YearsStart: "2012",
-			Type:       Manga_type,
+			Title:      "",
+			CoverUrl:   "",
+			YearsStart: "",
+			Type:       "",
 		},
 	},
 	Keywords: []string{
-		"Citrus+ Scan ITA",
-		"Citrus+ Scan ITALIANE",
-		"Citrus+ MangaWorld",
-		"Citrus+ MangaDex",
-		"Citrus+ MangaEden",
-		"Citrus+ SUB ITA",
-		"Citrus+ Leggi online",
-		"Citrus+ Reader ITA",
-		"Citrus+ Scan online",
-		"Citrus+ Read online",
-		"Citrus+ Online",
-		"Citrus+ Manga ITA",
-		"Citrus+ Manga Scan",
-		"Citrus+ Scan manga online",
-		"Citrus+ ITA Scan",
-		"MangaWorld Citrus+",
-		"Scan ITA Citrus+",
-		"Read online Citrus+",
+		"Kishuku Gakkou no Juliet Scan ITA",
+		"Kishuku Gakkou no Juliet Scan ITALIANE",
+		"Kishuku Gakkou no Juliet MangaWorld",
+		"Kishuku Gakkou no Juliet MangaDex",
+		"Kishuku Gakkou no Juliet MangaEden",
+		"Kishuku Gakkou no Juliet SUB ITA",
+		"Kishuku Gakkou no Juliet Leggi online",
+		"Kishuku Gakkou no Juliet Reader ITA",
+		"Kishuku Gakkou no Juliet Scan online",
+		"Kishuku Gakkou no Juliet Read online",
+		"Kishuku Gakkou no Juliet Online",
+		"Kishuku Gakkou no Juliet Manga ITA",
+		"Kishuku Gakkou no Juliet Manga Scan",
+		"Kishuku Gakkou no Juliet Scan manga online",
+		"Kishuku Gakkou no Juliet ITA Scan",
+		"MangaWorld Kishuku Gakkou no Juliet",
+		"Scan ITA Kishuku Gakkou no Juliet",
+		"Read online Kishuku Gakkou no Juliet",
 	},
 }
 
@@ -293,7 +301,7 @@ func TestManga_GetFansub(t *testing.T) {
 
 	err = m.GetFansub()
 	if err != nil {
-		t.Error("Error to get fansub")
+		t.Error("Error to get fansub: ", err)
 	}
 
 	if m.Fansub.Name != testManga.Fansub.Name {
@@ -340,8 +348,8 @@ func TestManga_GetMalUrl(t *testing.T) {
 		t.Error("Error to get MAL url")
 	}
 
-	if m.MALUrl != testManga.AnilistUrl {
-		t.Error("Error not obtain", testManga.AnilistUrl, "but obtain", m.MALUrl)
+	if m.MALUrl != testManga.MALUrl {
+		t.Error("Error not obtain", testManga.MALUrl, "but obtain", m.MALUrl)
 	} else {
 		t.Log("MAL url [OK]")
 	}
@@ -451,12 +459,12 @@ func TestManga_GetChapters(t *testing.T) {
 		t.Error("Error to create object")
 	}
 
-	err = m.GetChapters()
+	err = m.GetChapters(66, 68)
 	if err != nil {
 		t.Error("Error to get chapters: ", err)
 	}
 
-	m.Chapters = m.Chapters[:3]
+	//m.Chapters = m.Chapters[:3]
 
 	for i, chapter := range m.Chapters {
 		if chapter.Url != testManga.Chapters[i].Url {
