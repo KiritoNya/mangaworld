@@ -3,7 +3,6 @@ package mangaworld
 import (
 	"github.com/KiritoNya/htmlutils"
 	"golang.org/x/net/html"
-	"strconv"
 	"strings"
 )
 
@@ -49,9 +48,7 @@ func (t *Trending) GetChapter() error {
 	}
 
 	numString := string(htmlutils.GetNodeText(divs[0], "a"))
-	t.Chapter.Number, err = strconv.Atoi(strings.Replace(numString, "Capitolo ", "", -1))
-	if err != nil {
-		return err
-	}
+	t.Chapter.Number = strings.Replace(numString, "Capitolo ", "", -1)
+
 	return nil
 }

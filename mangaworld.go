@@ -611,7 +611,7 @@ func (lc *ListChapter) GetNumVolumes() (numVolumes []int) {
 }
 
 //GetUrls returns a slice of int with numbers of the chapters contained in the ListChapter.
-func (lc *ListChapter) GetNumber() (numbers []int) {
+func (lc *ListChapter) GetNumber() (numbers []string) {
 	for i, _ := range lc.Chapters {
 		numbers = append(numbers, lc.Chapters[i].Number)
 	}
