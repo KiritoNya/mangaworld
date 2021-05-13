@@ -132,17 +132,23 @@ func (q *Query) SetSort(method Sort) {
 //Executes the query that was previously set.
 func (q *Query) Do() (mangas []Manga, err error) {
 
+	if !serviceActive {
+		err = NewDefaultService()
+		if err != nil {
+			return nil, err
+		}
+	}
+
 	var htmlNode *html.Node
 
 	query := q.createQuery()
 
-	resp, err := http.Get(query)
+	resp, err := doRequest(query)
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
 
-	htmlNode, err = html.Parse(resp.Body)
+	htmlNode, err = html.Parse(strings.NewReader(resp))
 	if err != nil {
 		return nil, err
 	}
