@@ -125,6 +125,9 @@ func (c *Chapter) GetNumber() error {
 		if strings.Contains(htmlutils.RenderNode(option), "selected") {
 			chapterString := string(htmlutils.GetNodeText(option, "option"))
 			chapterString = strings.Replace(chapterString, "Capitolo ", "", -1)
+			if chapterString == "Oneshot"{
+				chapterString = "1"
+			}
 			c.Number, err = strconv.Atoi(chapterString)
 			if err != nil {
 				return err
