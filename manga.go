@@ -391,6 +391,9 @@ func (m *Manga) GetChaptersNum() error {
 
 	numChapString := string(htmlutils.GetNodeText(spans[0], "span"))
 	numChapString = strings.Replace(numChapString, "Capitolo ", "", -1)
+	if numChapString == "Oneshot" {
+		numChapString = "1"
+	}
 	m.ChaptersNum, err = strconv.Atoi(numChapString)
 	if err != nil {
 		return err
