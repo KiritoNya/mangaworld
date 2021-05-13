@@ -146,12 +146,12 @@ func (q *Query) Do() (mangas []Manga, err error) {
 		return nil, err
 	}
 
-	li, err := htmlutils.QuerySelector(htmlNode, "li", "class", "page-item last")
+	li, err := htmlutils.QuerySelector(htmlNode, "li", "class", "page-item")
 	if err != nil {
 		return nil, err
 	}
 
-	a, err := htmlutils.GetGeneralTags(li[0], "a")
+	a, err := htmlutils.GetGeneralTags(li[len(li)], "a")
 	if err != nil {
 		return nil, err
 	}
