@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-const urlTest = "https://www.mangaworld.cc/manga/1876/citrus-1/read/5fbbfab01c9bb544acdbbac0/1"
+const urlTest = "https://www.mangaworld.io/manga/1876/citrus-1/read/5fbbfab01c9bb544acdbbac0/1"
 
 var testChapter = Chapter{
 	Volume:      3,

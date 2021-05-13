@@ -14,10 +14,10 @@ import (
 )
 
 //UrlSite is base URL of site MangaWorld.
-const UrlSite = "https://www.mangaworld.cc/"
+const UrlSite = "https://www.mangaworld.io/"
 
 //UrlSearch is base URL for query search.
-const UrlSearch = "https://www.mangaworld.cc/archive?"
+const UrlSearch = "https://www.mangaworld.io/archive?"
 
 //ListManga is a type that contain a slice of manga
 type ListManga struct {
