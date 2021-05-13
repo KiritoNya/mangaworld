@@ -131,6 +131,8 @@ func (q *Query) SetSort(method Sort) {
 //Executes the query that was previously set.
 func (q *Query) Do() (mangas []Manga, err error) {
 
+	var htmlNode *html.Node
+
 	query := q.createQuery()
 
 	resp, err := http.Get(query)
@@ -139,34 +141,76 @@ func (q *Query) Do() (mangas []Manga, err error) {
 	}
 	defer resp.Body.Close()
 
-	htmlNode, err := html.Parse(resp.Body)
+	htmlNode, err = html.Parse(resp.Body)
 	if err != nil {
 		return nil, err
 	}
 
-	divs, err := htmlutils.QuerySelector(htmlNode, "div", "class", "entry")
+	li, err := htmlutils.QuerySelector(htmlNode, "li", "class", "page-item last")
 	if err != nil {
 		return nil, err
 	}
 
-	for _, div := range divs {
-		tagA, err := htmlutils.GetGeneralTags(div, "a")
-		if err != nil {
-			return nil, err
-		}
-
-		url, err := htmlutils.GetValueAttr(tagA[0], "a", "href")
-		if err != nil {
-			return nil, err
-		}
-
-		manga, err := NewManga(string(url[0]))
-		if err != nil {
-			return nil, err
-		}
-
-		mangas = append(mangas, *manga)
+	a, err := htmlutils.GetGeneralTags(li[0], "a")
+	if err != nil {
+		return nil, err
 	}
+
+	num := htmlutils.GetNodeText(a[0], "a")
+	if err != nil {
+		return nil, err
+	}
+
+	numInt, err := strconv.Atoi(string(num))
+	if err != nil {
+		return nil, err
+	}
+
+	for i:=1; i <= numInt;  i++ {
+
+		query = query + "?page=" + strconv.Itoa(i)
+
+		if i != 1 {
+
+			resp, err := http.Get(query)
+			if err != nil {
+				return nil, err
+			}
+			defer resp.Body.Close()
+
+			htmlNode, err = html.Parse(resp.Body)
+			if err != nil {
+				return nil, err
+			}
+
+		}
+
+		divs, err := htmlutils.QuerySelector(htmlNode, "div", "class", "entry")
+		if err != nil {
+			return nil, err
+		}
+
+		for _, div := range divs {
+			tagA, err := htmlutils.GetGeneralTags(div, "a")
+			if err != nil {
+				return nil, err
+			}
+
+			url, err := htmlutils.GetValueAttr(tagA[0], "a", "href")
+			if err != nil {
+				return nil, err
+			}
+
+			manga, err := NewManga(string(url[0]))
+			if err != nil {
+				return nil, err
+			}
+
+			mangas = append(mangas, *manga)
+		}
+
+	}
+
 	return mangas, nil
 }
 
