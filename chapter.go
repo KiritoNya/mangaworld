@@ -20,7 +20,7 @@ import (
 type Chapter struct {
 	Url         string
 	Volume      int
-	Number      int
+	Number      string
 	PageNum     int
 	Visual      int
 	VisualToday int
@@ -124,11 +124,7 @@ func (c *Chapter) GetNumber() error {
 	for _, option := range options {
 		if strings.Contains(htmlutils.RenderNode(option), "selected") {
 			chapterString := string(htmlutils.GetNodeText(option, "option"))
-			chapterString = strings.Replace(chapterString, "Capitolo ", "", -1)
-			if chapterString == "Oneshot"{
-				chapterString = "1"
-			}
-			c.Number, err = strconv.Atoi(chapterString)
+			c.Number = strings.Replace(chapterString, "Capitolo ", "", -1)
 			if err != nil {
 				return err
 			}
@@ -292,7 +288,7 @@ func (c *Chapter) Download(dest string) error {
 	}
 
 	//number not set
-	if c.Number == 0 {
+	if c.Number == "" {
 		c.GetNumber()
 	}
 

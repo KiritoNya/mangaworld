@@ -394,6 +394,18 @@ func (m *Manga) GetChaptersNum() error {
 	if numChapString == "Oneshot" {
 		numChapString = "1"
 	}
+	if strings.Contains(numChapString, "."){
+
+		matrix := strings.Split(numChapString, ".")
+		num, err := strconv.Atoi(matrix[0])
+		if err != nil {
+			return err
+		}
+
+		m.ChaptersNum = num+1
+		return nil
+
+	}
 	m.ChaptersNum, err = strconv.Atoi(numChapString)
 	if err != nil {
 		return err
