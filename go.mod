@@ -1,11 +1,10 @@
-module github.com/KiritoNya/mangaworld
+module github.com/KiritoNya/animeworld
 
 go 1.16
 
 require (
-	github.com/KiritoNya/htmlutils v1.1.1
-	github.com/cheggaaa/pb/v3 v3.0.8
-	github.com/grokify/html-strip-tags-go v0.0.1
-	github.com/tebeka/selenium v0.9.9
-	golang.org/x/net v0.0.0-20210510120150-4163338589ed
+	github.com/KiritoNya/htmlutils v1.2.1
+	github.com/mmcdole/gofeed v1.1.3
+	github.com/tebeka/selenium v0.9.9 // indirect
+	golang.org/x/net v0.0.0-20210423184538-5f58ad60dda6
 )
