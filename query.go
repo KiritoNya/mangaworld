@@ -1,6 +1,7 @@
 package mangaworld
 
 import (
+	"fmt"
 	"github.com/KiritoNya/htmlutils"
 	"golang.org/x/net/html"
 	"net/http"
@@ -146,12 +147,14 @@ func (q *Query) Do() (mangas []Manga, err error) {
 		return nil, err
 	}
 
-	li, err := htmlutils.QuerySelector(htmlNode, "li", "class", "page-item")
+	fmt.Println(htmlutils.RenderNode(htmlNode))
+
+	li, err := htmlutils.QuerySelector(htmlNode, "li", "class", "page-item last")
 	if err != nil {
 		return nil, err
 	}
 
-	a, err := htmlutils.GetGeneralTags(li[len(li)], "a")
+	a, err := htmlutils.GetGeneralTags(li[0], "a")
 	if err != nil {
 		return nil, err
 	}
