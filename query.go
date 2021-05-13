@@ -175,9 +175,8 @@ func (q *Query) Do() (mangas []Manga, err error) {
 
 	for i:=1; i <= numInt;  i++ {
 
-		fmt.Println("QUERY: ", query)
-
 		query2 := query + "&page=" + strconv.Itoa(i)
+		fmt.Println("QUERY: ", query2)
 
 		if i != 1 {
 
