@@ -177,11 +177,11 @@ func (q *Query) Do() (mangas []Manga, err error) {
 
 		fmt.Println("QUERY: ", query)
 
-		query = query + "&page=" + strconv.Itoa(i)
+		query2 := query + "&page=" + strconv.Itoa(i)
 
 		if i != 1 {
 
-			resp, err := http.Get(query)
+			resp, err := http.Get(query2)
 			if err != nil {
 				return nil, err
 			}
