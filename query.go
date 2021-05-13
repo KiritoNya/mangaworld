@@ -147,8 +147,6 @@ func (q *Query) Do() (mangas []Manga, err error) {
 		return nil, err
 	}
 
-	fmt.Println(htmlutils.RenderNode(htmlNode))
-
 	li, err := htmlutils.QuerySelector(htmlNode, "li", "class", "page-item last")
 	if err != nil {
 		return nil, err
@@ -171,7 +169,9 @@ func (q *Query) Do() (mangas []Manga, err error) {
 
 	for i:=1; i <= numInt;  i++ {
 
-		query = query + "?page=" + strconv.Itoa(i)
+		fmt.Println("QUERY: ", query)
+
+		query = query + "&page=" + strconv.Itoa(i)
 
 		if i != 1 {
 
