@@ -1,6 +1,6 @@
 # mangaworld
 
-[![GoDoc](https://godoc.org/github.com/gorilla/mux?status.svg)](https://godoc.org/github.com/kiritoNya/mangaworld)
+[![GoDoc](https://godoc.org/github.com/gorilla/mux?status.svg)](https://pkg.go.dev/github.com/KiritoNya/mangaworld)
 [![CircleCI](https://circleci.com/gh/gorilla/mux.svg?style=svg)](https://circleci.com/gh/kiritoNya/mangaworld)
 
 Package `kiritoNya/mangaworld` implements many API that allow web scraping from the site [Mangaworld](https://www.mangaworld.io/).
