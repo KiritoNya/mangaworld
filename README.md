@@ -7,11 +7,11 @@ Package `kiritoNya/mangaworld` implements many API that allow web scraping from 
 
 It implements:
 
-* Get information of manga and chapters.
-* Get page url of chapters.
-* Get trending manga and new releases.
-* Search manga by creating queries and querying the site.
-* Download the chapters.
+* Getting information of manga and chapters.
+* Getting page url of chapters.
+* Getting trending manga and new releases.
+* Searching manga by creating queries and querying the site.
+* Downloading the chapters.
 ---
 
 * [Install](#install)
