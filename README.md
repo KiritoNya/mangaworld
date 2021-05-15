@@ -184,7 +184,7 @@ func main() {
 
 ### Download
 
-We come to the part that will certainly interest you the most, namely the download of the chapters.
+We come to the part that will certainly interest you the most: downloading chapters.
 
 ```go
 func main() {
