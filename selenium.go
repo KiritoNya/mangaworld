@@ -113,7 +113,7 @@ func doRequest(url string) (resp string, err error) {
 
 	wd, err := NewDefaultWebDriver(url)
 	if err != nil {
-
+		return "", err
 	}
 	defer wd.Close()
 
