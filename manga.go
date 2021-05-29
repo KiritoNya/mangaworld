@@ -307,24 +307,37 @@ func (m *Manga) GetMalUrl() error {
 
 //Add anilist url to the object.
 func (m *Manga) GetAnilistUrl() error {
+
 	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "col-12 col-md-6 p-0 mt-1")
 	if err != nil {
 		return err
 	}
 
-	tagA, err := htmlutils.GetGeneralTags(divs[2], "a")
-	if err != nil {
-		return err
+	for _, div := range divs {
+
+		tagA, err := htmlutils.GetGeneralTags(div, "a")
+		if err != nil {
+			return err
+		}
+
+		span, err := htmlutils.GetGeneralTags(tagA[0], "span")
+		if err != nil {
+			return err
+		}
+
+		node := htmlutils.GetNodeText(span[0], "span")
+		if string(node) == "AniList" {
+			url, err := htmlutils.GetValueAttr(tagA[0], "a", "href")
+			if err != nil {
+				return err
+			}
+
+			m.AnilistUrl = string(url[0])
+			return nil
+		}
 	}
 
-	url, err := htmlutils.GetValueAttr(tagA[0], "a", "href")
-	if err != nil {
-		return err
-	}
-
-	m.AnilistUrl = string(url[0])
-
-	return nil
+	return errors.New("IdAnilist not found")
 
 }
 
@@ -391,21 +404,6 @@ func (m *Manga) GetChaptersNum() error {
 
 	numChapString := string(htmlutils.GetNodeText(spans[0], "span"))
 	numChapString = strings.Replace(numChapString, "Capitolo ", "", -1)
-	if numChapString == "Oneshot" {
-		numChapString = "1"
-	}
-	if strings.Contains(numChapString, "."){
-
-		matrix := strings.Split(numChapString, ".")
-		num, err := strconv.Atoi(matrix[0])
-		if err != nil {
-			return err
-		}
-
-		m.ChaptersNum = num+1
-		return nil
-
-	}
 	m.ChaptersNum, err = strconv.Atoi(numChapString)
 	if err != nil {
 		return err
