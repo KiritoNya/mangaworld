@@ -30,7 +30,7 @@ type Manga struct {
 	YearsStart       string
 	VolumsNum        int
 	ChaptersNum      int
-	Chapters         []Chapter
+	Chapters         []*Chapter
 	Relations        []Manga
 	Visual           int
 	Fansub           Fansub
@@ -463,7 +463,7 @@ func (m *Manga) GetChapters(start int, end int) error {
 			return err
 		}
 
-		m.Chapters = append(m.Chapters, *c)
+		m.Chapters = append(m.Chapters, c)
 	}
 
 	return nil

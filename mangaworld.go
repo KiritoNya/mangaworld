@@ -446,7 +446,7 @@ func (lm *ListManga) GetChaptersNum() (numChapters []int) {
 }
 
 //GetChapters returns a matrix of Chapters with the chapters of manga in the list.
-func (lm *ListManga) GetChapters() (chapters [][]Chapter) {
+func (lm *ListManga) GetChapters() (chapters [][]*Chapter) {
 	for _, manga := range lm.Mangas {
 		chapters = append(chapters, manga.Chapters)
 	}

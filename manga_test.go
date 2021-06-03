@@ -51,7 +51,7 @@ var testManga = Manga{
 	Plot:            "Juliet Persia e Romio Inuzuka sono a capo di due dormitori rivali presso la Dahlia Academy Boarding School, in cui risiedono gli studenti appartenenti a due paesi differenti, i “Black Dogs” e i “White Cats”. Le due fazioni sono in guerra tra loro per contendersi il controllo dell’isola in cui vivono. Juliet e Romio si dimostrano agli occhi dei loro compagni di dormitorio come acerrimi nemici, ma in realtà sono segretamente innamorati l’uno dell’altra e costretti a mantenere nascosta la loro relazione per non subire ripercussioni.",
 	VolumsNum:       11,
 	ChaptersNum:     68,
-	Chapters: []Chapter{
+	Chapters: []*Chapter{
 		{Url: "https://www.mangaworld.cc/manga/1919/kishuku-gakkou-no-juliet/read/601ab540f0ba3f6b7ca7b8e3"},
 		{Url: "https://www.mangaworld.cc/manga/1919/kishuku-gakkou-no-juliet/read/601d8fb51116ba6b71afa17c"},
 		{Url: "https://www.mangaworld.cc/manga/1919/kishuku-gakkou-no-juliet/read/60242979b6bece4364bc46f4"},

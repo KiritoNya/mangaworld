@@ -5,11 +5,11 @@ import (
 	"time"
 )
 
-const urlTest = "https://www.mangaworld.io/manga/1876/citrus-1/read/5fbbfab01c9bb544acdbbac0/1"
+const urlTest = "https://www.mangaworld.io/manga/2053/10-years-in-the-friend-zone/read/5faa0c66e8fe2d71aefc8c7d/1"
 
 var testChapter = Chapter{
 	Volume:      3,
-	Number:      "16",
+	Number:      "4",
 	PageNum:     22,
 	Visual:      1196, //changes constantly
 	VisualToday: 33,
@@ -91,9 +91,7 @@ func TestChapter_GetVolume(t *testing.T) {
 
 func TestChapter_GetNumber(t *testing.T) {
 
-	u := "https://www.mangaworld.io/manga/2053/10-years-in-the-friend-zone/read/5faa0c66e8fe2d71aefc8c7c/1"
-
-	c, err := NewChapter(u)
+	c, err := NewChapter(urlTest)
 	if err != nil {
 		t.Fatalf("Error to create object")
 	}
