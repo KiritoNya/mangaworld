@@ -9,7 +9,7 @@ const urlTest = "https://www.mangaworld.io/manga/1876/citrus-1/read/5fbbfab01c9b
 
 var testChapter = Chapter{
 	Volume:      3,
-	Number:      16,
+	Number:      "16",
 	PageNum:     22,
 	Visual:      1196, //changes constantly
 	VisualToday: 33,
@@ -91,7 +91,9 @@ func TestChapter_GetVolume(t *testing.T) {
 
 func TestChapter_GetNumber(t *testing.T) {
 
-	c, err := NewChapter(urlTest)
+	u := "https://www.mangaworld.io/manga/2053/10-years-in-the-friend-zone/read/5faa0c66e8fe2d71aefc8c7c/1"
+
+	c, err := NewChapter(u)
 	if err != nil {
 		t.Fatalf("Error to create object")
 	}
@@ -101,8 +103,8 @@ func TestChapter_GetNumber(t *testing.T) {
 		t.Error("Error to get chapter number: ", err)
 	}
 
-	if c.Number != testChapter.Number {
-		t.Error("Error not obtain", testChapter.Number, "but obtain", c.Number)
+	if c.Number != "04" {
+		t.Error("Error not obtain", "04", "but obtain", c.Number)
 	} else {
 		t.Log("Chapter Number [OK]")
 	}

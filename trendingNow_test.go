@@ -12,7 +12,7 @@ var testTrending = Trending{
 		Url: "https://www.mangaworld.cc/manga/1738/solo-leveling/",
 	},
 	Chapter: Chapter{
-		Number: 131,
+		Number: "131",
 	},
 }
 
