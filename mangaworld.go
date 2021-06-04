@@ -21,7 +21,7 @@ const UrlSearch = "https://www.mangaworld.io/archive?"
 
 //ListManga is a type that contain a slice of manga
 type ListManga struct {
-	Mangas []Manga
+	Mangas []*Manga
 }
 
 type ListChapter struct {
@@ -115,7 +115,7 @@ func (lm *ListManga) MonthlyManga() error {
 			return err
 		}
 
-		lm.Mangas = append(lm.Mangas, Manga{Url: string(url[0])})
+		lm.Mangas = append(lm.Mangas, &Manga{Url: string(url[0])})
 	}
 	return nil
 }

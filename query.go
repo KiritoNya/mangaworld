@@ -130,7 +130,7 @@ func (q *Query) SetSort(method Sort) {
 }
 
 //Executes the query that was previously set.
-func (q *Query) Do() (mangas []Manga, err error) {
+func (q *Query) Do() (mangas []*Manga, err error) {
 
 	if !serviceActive {
 		err = NewDefaultService()
@@ -214,7 +214,7 @@ func (q *Query) Do() (mangas []Manga, err error) {
 				return nil, err
 			}
 
-			mangas = append(mangas, *manga)
+			mangas = append(mangas, manga)
 		}
 
 	}
