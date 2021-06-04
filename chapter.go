@@ -85,6 +85,7 @@ func NewChapter(urlChapter string) (*Chapter, error) {
 
 //Add number of volume of chapter to the object.
 func (c *Chapter) GetVolume() error {
+
 	sel, err := htmlutils.QuerySelector(c.resp, "select", "class", "volume custom-select")
 	if err != nil {
 		return err
@@ -106,33 +107,50 @@ func (c *Chapter) GetVolume() error {
 			break
 		}
 	}
+
 	return nil
 }
 
 //Add number of chapter to the object.
 func (c *Chapter) GetNumber() error {
-	sel, err := htmlutils.QuerySelector(c.resp, "select", "class", "chapter custom-select")
+
+	head, err := htmlutils.GetGeneralTags(c.resp, "head")
 	if err != nil {
 		return err
 	}
 
-	options, err := htmlutils.GetGeneralTags(sel[0], "option")
+	title, err := htmlutils.GetGeneralTags(head[0], "title")
 	if err != nil {
 		return err
 	}
 
-	for _, option := range options {
-		if strings.Contains(htmlutils.RenderNode(option), "selected") {
-			chapterString := string(htmlutils.GetNodeText(option, "option"))
-			c.Number = strings.Replace(chapterString, "Capitolo ", "", -1)
-			if err != nil {
-				return err
-			}
-			break
+	titleChap := htmlutils.GetNodeText(title[0], "title")
+
+	//CASE ... Capitolo ...
+	if strings.Contains(string(titleChap), "Capitolo ") {
+
+		matrix := strings.Split(string(titleChap), "Capitolo ")
+		tmp := strings.Split(matrix[1], " ")
+
+		//CASE ... Capitolo Extra ...
+		if tmp[0] == "Extra" {
+			c.Number = tmp[0] + " " + tmp[1]
+			return nil
 		}
+
+		//CASE ... Capitolo [0-9]+ ...
+		c.Number  = tmp[0]
+		return nil
+
 	}
 
-	return nil
+	//CASE ... Oneshot ...
+	if strings.Contains(string(titleChap), "Oneshot ") {
+		c.Number = "Oneshot"
+		return nil
+	}
+
+	return errors.New("Type of manga number not found")
 }
 
 //Add the number of pages of chapter to the object.
@@ -193,6 +211,7 @@ func (c *Chapter) GetVisualToday() error {
 
 //Add urls chapter pages to the object.
 func (c *Chapter) GetPageUrl() error {
+
 	if c.PageNum == 0 {
 		return errors.New("Error, page number of chapter not found, execute GetNumPage before this method")
 	}

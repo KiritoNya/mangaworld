@@ -392,25 +392,16 @@ func (m *Manga) GetVolumsNum() error {
 
 //Add number of chapters to the object.
 func (m *Manga) GetChaptersNum() error {
-	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "chap")
+	divs, err := htmlutils.QuerySelector(m.resp, "div", "class", "has-shadow zing-section bg-white newest-chapters mt-4")
+	if err != nil {
+		return err
+	}
+	a, err := htmlutils.QuerySelector(divs[0], "a", "class", "chap")
 	if err != nil {
 		return err
 	}
 
-	spans, err := htmlutils.GetGeneralTags(divs[0], "span")
-	if err != nil {
-		return err
-	}
-
-	numChapString := string(htmlutils.GetNodeText(spans[0], "span"))
-	numChapString = strings.Replace(numChapString, "Capitolo ", "", -1)
-	if numChapString == "Oneshot" {
-		numChapString = "01"
-	}
-	m.ChaptersNum, err = strconv.Atoi(numChapString)
-	if err != nil {
-		return err
-	}
+	m.ChaptersNum = len(a)
 
 	return nil
 }
