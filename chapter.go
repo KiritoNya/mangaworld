@@ -2,6 +2,7 @@ package mangaworld
 
 import (
 	"errors"
+	"fmt"
 	"github.com/KiritoNya/htmlutils"
 	pb "github.com/cheggaaa/pb/v3"
 	strip "github.com/grokify/html-strip-tags-go"
@@ -69,7 +70,7 @@ func NewChapter(urlChapter string) (*Chapter, error) {
 	}
 
 	if match == true {
-		urlMatrix = urlMatrix[:len(urlMatrix)]
+		urlMatrix = urlMatrix[:len(urlMatrix)-1]
 		urlChapter = strings.Join(urlMatrix, "/")
 	}
 
