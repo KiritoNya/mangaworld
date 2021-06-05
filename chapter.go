@@ -2,7 +2,6 @@ package mangaworld
 
 import (
 	"errors"
-	"fmt"
 	"github.com/KiritoNya/htmlutils"
 	pb "github.com/cheggaaa/pb/v3"
 	strip "github.com/grokify/html-strip-tags-go"
