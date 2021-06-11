@@ -243,7 +243,7 @@ func (c *Chapter) GetPageUrl() error {
 			return err
 		}
 
-		divs, err := htmlutils.QuerySelector(nodeHtml, "div", "class", "col-12 text-center position-relative")
+		divs, err := htmlutils.QuerySelector(nodeHtml, "div", "id", "page")
 		if err != nil {
 			return err
 		}
