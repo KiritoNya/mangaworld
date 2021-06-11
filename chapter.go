@@ -127,7 +127,7 @@ func (c *Chapter) GetNumber() error {
 	titleChap := htmlutils.GetNodeText(title[0], "title")
 
 	//CASE ... Capitolo ...
-	if strings.Contains(string(titleChap), "Capitolo ") || strings.Contains(string(titleChap), "CApitolo "){
+	if strings.Contains(string(titleChap), "Capitolo ") {
 
 		matrix := strings.Split(string(titleChap), "Capitolo ")
 		tmp := strings.Split(matrix[1], " ")
@@ -142,6 +142,21 @@ func (c *Chapter) GetNumber() error {
 		c.Number  = tmp[0]
 		return nil
 
+	}
+
+	if strings.Contains(string(titleChap), "CApitolo "){
+		matrix := strings.Split(string(titleChap), "CApitolo ")
+		tmp := strings.Split(matrix[1], " ")
+
+		//CASE ... Capitolo Extra ...
+		if tmp[0] == "Extra" {
+			c.Number = tmp[0] + " " + tmp[1]
+			return nil
+		}
+
+		//CASE ... Capitolo [0-9]+ ...
+		c.Number  = tmp[0]
+		return nil
 	}
 
 	//CASE ... Oneshot ...
