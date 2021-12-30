@@ -1,0 +1,43 @@
+package v2
+
+//Genre is the type that defines the genre of a manga.
+type Genre string
+
+const (
+	Action        Genre = "Action"
+	Adult         Genre = "Adult"
+	Adventure     Genre = "Adventure"
+	Comedy        Genre = "Comedy"
+	Doujinshi     Genre = "Doujinshi"
+	Drama         Genre = "Drama"
+	Ecchi         Genre = "Ecchi"
+	Fantasy       Genre = "Fantasy"
+	Gender_bender Genre = "Gender Bender"
+	Harem         Genre = "Harem"
+	Hentai        Genre = "Hentai"
+	Historical    Genre = "Historical"
+	Horror        Genre = "Horror"
+	Josei         Genre = "Josei"
+	Lolicon       Genre = "Lolicon"
+	Martial_arts  Genre = "Martial Arts"
+	Mature        Genre = "Mature"
+	Mecha         Genre = "Mecha"
+	Mistery       Genre = "Mistery"
+	Psychological Genre = "Psychological"
+	Romantic      Genre = "Romantic"
+	School        Genre = "School"
+	Sci_fi        Genre = "Sci-fi"
+	Seinen        Genre = "Seinen"
+	Shotacon      Genre = "Shotacon"
+	Shoujo        Genre = "Shoujo"
+	Shoujo_ai     Genre = "Shoujo Ai"
+	Shounen       Genre = "Shounen"
+	Shounen_ai    Genre = "Shounen Ai"
+	Slice_of_life Genre = "Slice of Life"
+	Smut          Genre = "Smut"
+	Supernatural  Genre = "Supernatural"
+	Sport         Genre = "Sport"
+	Tragic        Genre = "Tragic"
+	Yaoi          Genre = "Yaoi"
+	Yuri          Genre = "Yuri"
+)
